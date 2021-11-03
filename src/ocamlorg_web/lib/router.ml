@@ -102,6 +102,8 @@ let toplevels_route =
     [ Dream_encoding.compress ]
     [ Dream.get "/**" (Dream.static (Fpath.to_string Ocamlorg.toplevels_path)) ]
 
+let letsencrypt_route = Dream.scope "" [] [ Dream.get "/**" Le.dispatch ]
+
 let router t =
   Dream.router
     [ page_routes

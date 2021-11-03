@@ -5,6 +5,7 @@
   dream-cli
   dream-accept
   dream-encoding
+  letsencrypt
   omd
   ocamlorg
   gettext
