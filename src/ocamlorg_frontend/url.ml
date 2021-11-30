@@ -67,7 +67,7 @@ let papers = "/papers"
 
 let tutorial name = "/learn/" ^ name
 
-let getting_started = "/learn/up-and-running"
+let getting_started = tutorial "up-and-running-with-ocaml"
 
 let best_practices = "/learn/best-practices"
 
