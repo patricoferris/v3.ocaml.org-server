@@ -18,7 +18,7 @@ let home () = Home.render ()
 
 let industrial_users users = Industrial_users.render users
 
-let learn () = Learn.render ()
+let learn ~papers ~release ~books = Learn.render ~papers ~release ~books
 
 let manual () = Manual.render ()
 
@@ -54,7 +54,7 @@ let success_stories success_stories = Success_stories.render success_stories
 
 let success_story success_story = Success_story.render success_story
 
-let tutorial () = Tutorial.render ()
+let tutorial tutorial = Tutorial.render tutorial
 
 let carbon_footprint () = Carbon_footprint.render ()
 

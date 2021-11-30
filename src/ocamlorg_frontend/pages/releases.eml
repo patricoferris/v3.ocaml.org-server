@@ -53,31 +53,31 @@ Layout.render
                     </thead>
                     <tbody>
                         <% releases |> List.iter (fun (release : Ood.Release.t) -> %>
-                            <tr>
-                                <td class="py-4 px-6 font-semibold">
-                                    <div class="font-semibold">
-                                        <%s release.version %>
-                                    </div>
-                                    <div class="prose prose-orange font-normal">
-                                        <%s! release.highlights_html %>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-6 font-medium align-top">
-                                    <%s release.date %>
-                                </td>
-                                <td class="py-4 px-6 align-top">
-                                    <a href="<%s Url.release release.version %>" class="text-primary-600 font-medium block">
-                                        Release Notes
-                                    </a>
-                                    <a href="<%s Url.package_with_version "ocaml" release.version %>" class="text-primary-600 font-medium block">
-                                        OCaml Package
-                                    </a>
-                                    <a href="<%s Url.manual_with_version release.version %>" class="text-primary-600 font-medium block">
-                                        Manual
-                                    </a>
-                                </td>
-                            </tr>
-                            <% ); %>
+                        <tr>
+                            <td class="py-4 px-6 font-semibold">
+                                <div class="font-semibold">
+                                    <%s release.version %>
+                                </div>
+                                <div class="prose prose-orange font-normal">
+                                    <%s! release.highlights_html %>
+                                </div>
+                            </td>
+                            <td class="py-4 px-6 font-medium align-top">
+                                <%s release.date %>
+                            </td>
+                            <td class="py-4 px-6 align-top">
+                                <a href="<%s Url.release release.version %>" class="text-primary-600 font-medium block">
+                                    Release Notes
+                                </a>
+                                <a href="<%s Url.package_with_version "ocaml" release.version %>" class="text-primary-600 font-medium block">
+                                    OCaml Package
+                                </a>
+                                <a href="<%s Url.manual_with_version release.version %>" class="text-primary-600 font-medium block">
+                                    Manual
+                                </a>
+                            </td>
+                        </tr>
+                        <% ); %>
                     </tbody>
                 </table>
                 <% ); %>

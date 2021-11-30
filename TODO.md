@@ -86,6 +86,42 @@
   - [X] Static content is reviewed
   - [ ] Relative links in the markdown need to be fixed
 
+## Learn
+
+- [ ] Learn
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [ ] Static content is reviewed
+  - [ ] Layout is broken by paper abstract
+  - [ ] Why does the menu scroll when the content is longer than the menu
+  - [ ] Mobile menu can't be used if scolling
+
+- [ ] Tutorial
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [X] Static content is reviewed
+  - [ ] Implement current page table of content
+
+- [ ] Best practices
+  - [ ] Initial integration
+  - [ ] All links are working
+  - [ ] Content is dynamic
+  - [ ] Static content is reviewed
+
+- [ ] Manual
+  - [ ] Initial integration
+  - [ ] All links are working
+  - [ ] Content is dynamic
+  - [ ] Static content is reviewed
+
+- [ ] Problems
+  - [ ] Initial integration
+  - [ ] All links are working
+  - [ ] Content is dynamic
+  - [ ] Static content is reviewed
+
 ## Community
 
 - [ ] Event
@@ -118,39 +154,7 @@
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
 
-## Learn
-
-- [ ] Learn
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Best practices
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Manual
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Problems
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Tutorial
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-  ## Packages
+## Packages
 
 - [ ] Packages
   - [ ] Initial integration
