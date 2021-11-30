@@ -22,7 +22,6 @@ body {
 
 .container-fluid {
     @apply max-w-7xl w-full mx-auto px-6;
-
 }
 
 .container-fluid.wide {
@@ -131,4 +130,13 @@ footer a:hover {
 
 .link-orange {
     @apply text-primary-600 hover:underline;
+}
+
+
+.page-toc li a {
+    @apply font-semibold text-body-600 text-sm mb-4 block;
+}
+
+.page-toc li li li {
+    @apply ml-4;
 }
