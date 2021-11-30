@@ -18,8 +18,7 @@ let not_found _req =
     (Not_found_template.render ())
   |> Dream.html ~code:404
 
-let index _req =
-  Dream.html Ocamlorg_frontend.home
+let index _req = Dream.html Ocamlorg_frontend.home
 
 let history _req =
   Page_layout_template.render
