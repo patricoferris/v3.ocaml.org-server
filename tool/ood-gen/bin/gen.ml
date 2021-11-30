@@ -32,4 +32,6 @@ let default_cmd =
   ( Term.(ret (const (fun _ -> `Help (`Pager, None)) $ const ()))
   , Term.info "ood_gen" )
 
-let () = Term.(exit @@ eval_choice default_cmd cmds)
+let () =
+  Printexc.record_backtrace true;
+  Term.(exit @@ eval_choice default_cmd cmds)

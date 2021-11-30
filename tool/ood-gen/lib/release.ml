@@ -12,6 +12,7 @@ type metadata =
   { kind : string
   ; version : string
   ; date : string
+  ; highlights : string
   }
 [@@deriving yaml]
 
@@ -25,6 +26,8 @@ type t =
   { kind : kind
   ; version : string
   ; date : string
+  ; highlights_md : string
+  ; highlights_html : string
   ; body_md : string
   ; body_html : string
   }
@@ -41,10 +44,17 @@ let all () =
       { kind = kind_of_string metadata.kind
       ; version = metadata.version
       ; date = metadata.date
+      ; highlights_md = metadata.highlights
+      ; highlights_html =
+          Omd.of_string metadata.highlights
+          |> Hilite.Md.transform
+          |> Omd.to_html
       ; body_md = body
-      ; body_html = Omd.of_string body |> Omd.to_html
+      ; body_html = Omd.of_string body |> Hilite.Md.transform |> Omd.to_html
       })
     "releases/en"
+  |> List.sort (fun a b -> String.compare a.date b.date)
+  |> List.rev
 
 let pp_kind ppf v = Fmt.pf ppf "%s" (match v with `Compiler -> "`Compiler")
 
@@ -55,6 +65,8 @@ let pp ppf v =
   { kind = %a
   ; version = %a
   ; date = %a
+  ; highlights_md = %a
+  ; highlights_html = %a
   ; body_md = %a
   ; body_html = %a
   }|}
@@ -64,6 +76,10 @@ let pp ppf v =
     v.version
     Pp.string
     v.date
+    Pp.string
+    v.highlights_md
+    Pp.string
+    v.highlights_html
     Pp.string
     v.body_md
     Pp.string
@@ -80,6 +96,8 @@ type t =
   { kind : kind
   ; version : string
   ; date : string
+  ; highlights_md : string
+  ; highlights_html : string
   ; body_md : string
   ; body_html : string
   }

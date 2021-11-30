@@ -1,0 +1,62 @@
+let render books =
+Layout.render
+~turbo_full_reload:true
+~title:"OCaml Books"
+~description:"A selection of books to learn the OCaml programming language." @@
+<div class="intro-section-simple">
+    <div class="container-fluid">
+        <div class="text-center w-full lg:w-2/3 m-auto">
+            <h1 class="font-bold mb-6">Books</h1>
+            <p>Eget nibh diam eget velit quisque. Nec ac amet, nunc egestas felis ut. Cras leo amet donec facilisis.
+                Bibendum nisl viverra lorem viverra. Gravida quam posuere parturient varius.</p>
+        </div>
+    </div>
+</div>
+<div class="bg-white">
+    <div class="py-10 lg:py-28">
+        <div class="container-fluid">
+            <div class="overflow-x-scroll lg:overflow-hidden mt-5 lg:mt-10">
+                <% books |> List.iter (fun (item : Ood.Book.t) ->
+                let cover = Option.get item.cover in %>
+                <div
+                    class="flex space-y-10 lg:space-y-0 lg:space-x-16 pb-10 lg:pb-20 border-b border-gray-200 mt-10 lg:mt-20 flex-col lg:flex-row">
+                    <img src="/media/<%s cover %>"
+                        class="m-auto h-48 w-32 lg:w-64 lg:h-96 md:w-64 md:h-96 rounded-2xl border border-gray-200"
+                        alt="">
+                    <div class="flex-col flex-1">
+                        <h4 class="font-bold mb-6"><%s item.title %></h4>
+                        <% (match item.rating with | None -> () | Some rating ->  %>
+                        <!-- TODO(tmattio): get rating from data -->
+                        <div class="flex space-x-1 mb-6 text-primary-600">
+                            <% List.init rating (fun _ -> ()) |> List.iter (fun () -> %>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-300" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <% ); %>
+                            <% List.init (5 - rating) (fun _ -> ()) |> List.iter (fun () -> %>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <% ); %>
+                        </div>
+                        <% ); %>
+                        <div class="font-semibold text-base mb-6 uppercase"><%s item.authors |> String.concat ", " %></div>
+                        <div class="prose prose-orange mb-6"><%s! item.body_html %></div>
+                        <% let link = List.hd item.links in %>
+                        <a href="<%s link.uri %>">
+                            <button class="btn btn-secondary">
+                                <span><%s link.description %></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <% ); %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -321,7 +321,7 @@ let try_load_state () =
         v)
       ~finally:(fun () -> close_in channel)
   with
-  | Failure _ | Sys_error _ | Invalid_version ->
+  | Failure _ | Sys_error _ | Invalid_version | End_of_file ->
     Logs.info (fun f -> f "Package state starting from scratch");
     { opam_repository_commit = None
     ; version = Info.version

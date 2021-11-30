@@ -1,3 +1,5 @@
 (** Main entry point for our application. *)
 
-let () = Ocamlorg_web.run ()
+let () =
+  Printexc.record_backtrace true;
+  Ocamlorg_web.run ()

@@ -77,6 +77,8 @@ module Book : sig
     ; cover : string option
     ; isbn : string option
     ; links : link list
+    ; rating : int option
+    ; featured : bool
     ; body_md : string
     ; body_html : string
     }
@@ -111,6 +113,7 @@ module Job : sig
     ; link : string
     ; description_html : string
     ; location : string
+    ; country : string
     ; company : string
     ; company_logo : string
     ; fullfilled : bool
@@ -147,10 +150,11 @@ module Industrial_user : sig
     { name : string
     ; slug : string
     ; description : string
-    ; image : string option
-    ; site : string
+    ; logo : string option
+    ; url : string
     ; locations : string list
     ; consortium : bool
+    ; featured : bool
     ; body_md : string
     ; body_html : string
     }
@@ -165,6 +169,11 @@ module Industrial_user : sig
 end
 
 module Paper : sig
+  type link =
+    { description : string
+    ; uri : string
+    }
+
   type t =
     { title : string
     ; slug : string
@@ -173,7 +182,8 @@ module Paper : sig
     ; abstract : string
     ; tags : string list
     ; year : int
-    ; links : string list
+    ; links : link list
+    ; featured : bool
     }
 
   val all : t list
@@ -208,8 +218,11 @@ module Success_story : sig
   type t =
     { title : string
     ; slug : string
-    ; image : string option
-    ; url : string option
+    ; logo : string
+    ; background : string
+    ; theme : string
+    ; synopsis : string
+    ; url : string
     ; body_md : string
     ; body_html : string
     }
@@ -403,6 +416,8 @@ module Release : sig
     { kind : kind
     ; version : string
     ; date : string
+    ; highlights_md : string
+    ; highlights_html : string
     ; body_md : string
     ; body_html : string
     }

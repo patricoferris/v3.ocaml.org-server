@@ -5,7 +5,8 @@
   (deps
    (:data ../tailwind.config.js)
    (source_tree ../node_modules)
-   (source_tree ../src/ocamlorg_web/lib/templates))
+   (source_tree ../src/ocamlorg_web/lib/templates)
+   (source_tree ../src/ocamlorg_frontend))
   (action
    (chdir
     %{workspace_root}
@@ -18,5 +19,7 @@
      build
      -c
      tailwind.config.js
+     -i
+     src/ocamlorg_frontend/css/main.css
      -o
      %{target})))))

@@ -1,8 +1,8 @@
-type kind =
+type package_kind =
   | Package
   | Universe
 
-let index _req =
+let packages _req =
   Page_layout_template.render
     ~title:"OCaml Packages · Browse community packages"
     ~description:
@@ -11,7 +11,7 @@ let index _req =
     (Packages_template.render ())
   |> Dream.html
 
-let search t req =
+let packages_search t req =
   match Dream.query "q" req with
   | Some search ->
     let packages = Ocamlorg.Package.search_package t search in

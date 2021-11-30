@@ -7,7 +7,10 @@
 
 (rule
  (alias run)
- (deps main.exe %{workspace_root}/asset/main.css)
+ (deps
+  main.exe
+  %{workspace_root}/asset/main.css
+  (source_tree %{workspace_root}/asset))
  (action
   (chdir
    %{workspace_root}
