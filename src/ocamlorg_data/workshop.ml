@@ -141,7 +141,17 @@ Please consider submitting a presentation! See here the call for presentations.
 
 
 |js}
-  ; toc_html = {js||js}
+  ; toc_html = {js|<ul>
+<li><ul>
+<li><ul>
+<li>Call for Presentations
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+|js}
   ; body_html = {js|<h3>Call for Presentations</h3>
 <p>Please consider submitting a presentation! See here the call for presentations.</p>
 |js}
@@ -249,7 +259,17 @@ Please consider submitting a presentation! See here the call for presentations.
 
 
 |js}
-  ; toc_html = {js||js}
+  ; toc_html = {js|<ul>
+<li><ul>
+<li><ul>
+<li>Call for Presentations
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+|js}
   ; body_html = {js|<h3>Call for Presentations</h3>
 <p>Please consider submitting a presentation! See here the call for presentations.</p>
 |js}
@@ -395,7 +415,17 @@ Please consider submitting a presentation! See here the call for presentations.
 
 
 |js}
-  ; toc_html = {js||js}
+  ; toc_html = {js|<ul>
+<li><ul>
+<li><ul>
+<li>Call for Presentations
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+|js}
   ; body_html = {js|<h3>Call for Presentations</h3>
 <p>Please consider submitting a presentation! See here the call for presentations.</p>
 |js}
@@ -559,7 +589,17 @@ If you have any queries or suggestions for the workshop, please contact Didier R
 
 
 |js}
-  ; toc_html = {js||js}
+  ; toc_html = {js|<ul>
+<li><ul>
+<li><ul>
+<li>Questions and contact
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+|js}
   ; body_html = {js|<p>This event will take place in Paris. The venue is in Telecom ParisTech (former ENST, the place of the first OCaml Meeting).</p>
 <h3>Questions and contact</h3>
 <p>If you have any queries or suggestions for the workshop, please contact Didier Remy (first.last@inria.fr) or Anil Madhavapeddy (first.last@cl.cam.ac.uk).</p>
@@ -857,7 +897,19 @@ If you have any queries or suggestions for the workshop, please contact Didier R
 There is also an ASCII version of this information available, suitable for dissemination on mailing lists. Please help spread the word about this meeting!
 
 |js}
-  ; toc_html = {js||js}
+  ; toc_html = {js|<ul>
+<li><ul>
+<li><ul>
+<li>Scope
+</li>
+<li>Questions and contact
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+|js}
   ; body_html = {js|<h3>Scope</h3>
 <p>The OCaml Users and Developers Workshop will bring together industrial users of OCaml with academics and hackers who are working on extending the language, type system and tools. Discussion will focus on the practical aspects of OCaml programming and the nitty gritty of the tool-chain and upcoming improvements and changes. Thus, we aim to solicit talks on all aspects related to improving the use or development of the language, including, for example:</p>
 <ul>
@@ -1144,7 +1196,19 @@ Michel Mauny <michel.mauny AT ensta-paristech DOT fr>
 
 
 |js}
-  ; toc_html = {js||js}
+  ; toc_html = {js|<ul>
+<li><ul>
+<li><ul>
+<li>Call for Presentations
+</li>
+<li>Submission
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+|js}
   ; body_html = {js|<h3>Call for Presentations</h3>
 <p>Please consider submitting a presentation, and/or join us in Boston! See here the call for presentations.</p>
 <h3>Submission</h3>
@@ -1509,6 +1573,18 @@ If you have any questions, please e-mail: Jacques Garrigue|js}
   ; toc_html = {js|<ul>
 <li><ul>
 <li>Call for presentations (past)
+<ul>
+<li>Scope
+</li>
+<li>Presentations
+</li>
+<li>Submission
+</li>
+<li>ML family workshop and post-proceedings
+</li>
+<li>Questions and contact
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -1840,6 +1916,16 @@ If you have any questions, please e-mail: Damien Doligez <ocaml2015 AT easychair
   ; toc_html = {js|<ul>
 <li><ul>
 <li>Call for presentations (past)
+<ul>
+<li>Scope
+</li>
+<li>Submission
+</li>
+<li>ML family workshop and post-proceedings
+</li>
+<li>Questions and contact
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -2164,7 +2250,25 @@ There may be a combined post-conference proceedings of selected papers from the 
 
 Please send any questions to the chair:
 mshinwell -at- janestreet.com|js}
-  ; toc_html = {js||js}
+  ; toc_html = {js|<ul>
+<li><ul>
+<li><ul>
+<li>Scope
+</li>
+<li>Presentations
+</li>
+<li>Submission
+</li>
+<li>ML family workshop and post-proceedings
+</li>
+<li>Questions and contact
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+|js}
   ; body_html = {js|<h3>Scope</h3>
 <p>Presentations and discussions will focus on the OCaml
 programming language and its community. We aim to solicit talks
@@ -2551,6 +2655,18 @@ Please send any questions to the chair:
   ; toc_html = {js|<ul>
 <li><ul>
 <li>Call for presentations (past)
+<ul>
+<li>Scope
+</li>
+<li>Presentations
+</li>
+<li>Submission
+</li>
+<li>ML family workshop and post-proceedings
+</li>
+<li>Questions and contact
+</li>
+</ul>
 </li>
 </ul>
 </li>

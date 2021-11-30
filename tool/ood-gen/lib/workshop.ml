@@ -93,7 +93,7 @@ let all () =
       ; presentations = metadata.presentations
       ; program_committee = metadata.program_committee
       ; organising_committee = metadata.organising_committee
-      ; toc_html = Omd.to_html (Omd.toc omd)
+      ; toc_html = Omd.to_html (Omd.toc ~depth:4 omd)
       ; body_md = body
       ; body_html = Omd.to_html omd
       })

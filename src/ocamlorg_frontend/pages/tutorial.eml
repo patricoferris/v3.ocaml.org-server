@@ -16,10 +16,9 @@ Learn_layout.render
     <div class="flex-col w-60">
         <div class="h-auto border border-gray-200 rounded-xl p-6 right-sidebar">
             <div class="font-semibold text-black text-sm mb-4">ON THIS PAGE</div>
-            <a href="" class="font-semibold text-body-600 text-sm mb-4 block">Up and running with OCaml</a>
-            <a href="" class="font-semibold text-body-400 text-sm mb-4 block">Installing OCaml</a>
-            <a href="" class="font-semibold text-body-400 text-sm mb-4 block ml-4">For Linux and macOS</a>
-            <a href="" class="font-semibold text-body-400 text-sm block ml-8">For macOS</a>
+            <div class="page-toc">
+                <%s! tutorial.toc_html %>
+            </div>
         </div>
     </div>
 </div>

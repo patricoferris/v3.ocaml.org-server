@@ -102,15 +102,8 @@
   - [X] All links are working
   - [X] Content is dynamic
   - [X] Static content is reviewed
-  - [ ] Implement current page table of content
 
 - [ ] Best practices
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Manual
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
@@ -121,6 +114,10 @@
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
+
+- [ ] Manual
+  - [ ] Do we want to serve multiple version of the manual? If so, how? (we can't embed all the manual in the binary)
+  - [ ] Do we want to offer the download files (manual PDF, PostScript, etc)? If yes, where do we host them?
 
 ## Community
 
