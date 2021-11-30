@@ -15,6 +15,13 @@ let media_loader _root path request =
   | Some asset ->
     Dream.respond asset
 
+let manual_loader _root path request =
+  match Manual.read path with
+  | None ->
+    Handler.not_found request
+  | Some asset ->
+    Dream.respond asset
+
 let redirect s req = Dream.redirect req s
 
 let redirection_routes =
@@ -39,7 +46,7 @@ let page_routes =
     ; Dream.get Url.industrial_users Handler.industrial_users
     ; Dream.get Url.academic_users Handler.academic_users
     ; Dream.get Url.about Handler.about
-    ; Dream.get Url.manual Handler.manual
+      (* ; Dream.get Url.manual Handler.manual *)
     ; Dream.get Url.books Handler.books
     ; Dream.get Url.releases Handler.releases
     ; Dream.get (Url.release ":id") Handler.release
@@ -58,6 +65,7 @@ let page_routes =
     ]
 
 let package_route t =
+  (* TODO(tmattio): Use Url module here. *)
   Dream.scope
     ""
     [ Middleware.set_locale ]
@@ -107,6 +115,7 @@ let router t =
     ; graphql_route t
     ; redirection_routes
     ; toplevels_route
+    ; Dream.get "/manual/**" (Dream.static ~loader:manual_loader "")
     ; Dream.get "/media/**" (Dream.static ~loader:media_loader "")
     ; Dream.get "/**" (Dream.static ~loader "")
       (* Last one so that we don't apply the index html middleware on every
