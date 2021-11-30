@@ -251,9 +251,10 @@ let tutorial req =
   | None ->
     not_found req
 
-let best_practices _req = Dream.html (Ocamlorg_frontend.best_practices ())
+let best_practices _req =
+  Dream.html (Ocamlorg_frontend.best_practices Ood.Workflow.all)
 
-let problems _req = Dream.html (Ocamlorg_frontend.problems ())
+let problems _req = Dream.html (Ocamlorg_frontend.problems Ood.Problem.all)
 
 type package_kind =
   | Package

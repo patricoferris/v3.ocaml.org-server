@@ -10,6 +10,9 @@
 @import 'partials/card.css';
 @import 'partials/shadows.css';
 @import 'pages/industrial-users.css';
+@import 'other/doc.css';
+@import 'other/syntax.css';
+@import 'other/toplevel.css';
 
 html {
     scroll-behavior: smooth;

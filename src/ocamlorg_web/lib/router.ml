@@ -59,9 +59,9 @@ let page_routes =
     ; Dream.get Url.privacy Handler.privacy
     ; Dream.get Url.terms Handler.terms
     ; Dream.get Url.papers Handler.papers
-    ; Dream.get (Url.tutorial ":id") Handler.tutorial
     ; Dream.get Url.best_practices Handler.best_practices
     ; Dream.get Url.problems Handler.problems
+    ; Dream.get (Url.tutorial ":id") Handler.tutorial
     ]
 
 let package_route t =

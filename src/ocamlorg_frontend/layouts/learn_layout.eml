@@ -3,8 +3,6 @@ let render
 ?turbo_full_reload
 ?use_swiper
 ?use_turbo
-?use_toplevel
-?use_odoc_syntax
 ?current_tutorial
 ~title
 ~description
@@ -24,8 +22,6 @@ Layout.render
 ?turbo_full_reload
 ?use_swiper
 ?use_turbo
-?use_toplevel
-?use_odoc_syntax
 ~title
 ~description @@
 <button class="bg-primary-600  p-3 z-30 rounded-r-xl text-white shadow-md top-2/4 fixed md:hidden"
@@ -60,6 +56,7 @@ Layout.render
           <%s! render_tutorial "A First Hour with OCaml" "a-first-hour-with-ocaml" %>
           <%s! render_tutorial "OCaml Programming Guidelines" "ocaml-programming-guidelines" %>
           <%s! render_tutorial "Compiling OCaml Projects" "compiling-ocaml-projects" %>
+          <%s! render_tutorial "Best Practices" "best-practices" %>
         </div>
         <div class="space-y-2 flex mt-10 flex-col">
           <div class="text-sm font-semibold flex px-3 py-2 uppercase">Language Features</div>

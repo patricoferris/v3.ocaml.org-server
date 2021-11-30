@@ -4,7 +4,7 @@ let about () = About.render ()
 
 let academic_users users = Academic_users.render users
 
-let best_practices () = Best_practices.render ()
+let best_practices best_practices = Best_practices.render best_practices
 
 let books books = Books.render books
 
@@ -44,7 +44,7 @@ let packages_search () = Packages_search.render ()
 let papers ?search ~recommended_papers papers =
   Papers.render ?search ~recommended_papers papers
 
-let problems () = Problems.render ()
+let problems problems = Problems.render problems
 
 let release release = Release.render release
 

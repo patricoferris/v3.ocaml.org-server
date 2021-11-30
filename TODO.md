@@ -104,16 +104,20 @@
   - [X] Static content is reviewed
 
 - [ ] Best practices
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [X] Static content is reviewed
+  - [ ] Should add a title and subtitle to the page
 
 - [ ] Problems
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [X] Static content is reviewed
+  - [ ] Uniformise the menu with the Learn: add a Learn and Problems links with icons in both Learn pages and Problems
+  - [ ] The menu is truncated
+  - [ ] When the page is loading, the mobile menu is showed. The default state should be hidden when no JS is loaded
 
 - [ ] Manual
   - [ ] Do we want to serve multiple version of the manual? If so, how? (we can't embed all the manual in the binary)

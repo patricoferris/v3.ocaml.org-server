@@ -2,8 +2,6 @@ let render
 ?(turbo_full_reload=false)
 ?(use_swiper=false)
 ?(use_turbo=false)
-?(use_toplevel=false)
-?(use_odoc_syntax=false)
 ~title
 ~description
 inner =
@@ -30,12 +28,6 @@ inner =
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/main.css" />
   <link rel="stylesheet" href="/vendors/font-files/inter.css" />
-  <% if use_toplevel then ( %>
-  <link rel="stylesheet" href="/css/toplevel.css" />
-  <% ); %>
-  <% if use_odoc_syntax then ( %>
-  <link rel="stylesheet" href="/css/syntax.css" />
-  <% ); %>
   <script defer src="/vendors/alpine.min.js"></script>
   <% if use_turbo then ( %>
   <script src="/vendors/alpine-turbo-drive-adapter.min.js"></script>
