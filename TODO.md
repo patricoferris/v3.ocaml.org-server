@@ -2,22 +2,24 @@
 
 ## Principles
 
-- [ ] Homepage
+- Homepage
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [ ] Static content is done
   - [ ] Toplevel
   - [ ] GIF for compilation speed
+  - [ ] Confirm with Asaad that the change on the Strong community section looks good
+  - [ ] Add more community projects
 
-- [ ] About
+- About
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [X] Static content is reviewed
   - [ ] Add illustrations
 
-- [ ] Academic users
+- Academic users
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
@@ -25,14 +27,14 @@
   - [ ] Some logos are too big
   - [ ] Map is accurate
 
-- [ ] Industrial users
+- Industrial users
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [ ] Static content is reviewed
   - [ ] Some logos are too big
 
-- [ ] Success stories
+- Success stories
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
@@ -46,40 +48,40 @@
   - [X] Content is dynamic
   - [X] Static content is reviewed
 
-- [ ] Opportunities
+- Opportunities
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [X] Static content is reviewed
   - [ ] Re-introduce pagination when we add more opportunities
 
-- [ ] Opportunity
+- Opportunity
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [X] Static content is reviewed
 
-- [ ] Books
+- Books
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [ ] Static content is reviewed
 
-- [ ] Papers
+- Papers
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [ ] Static content is reviewed
   - [ ] Issues reported to Asaad are fixed
 
-- [ ] Releases
+- Releases
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [ ] Static content is reviewed
   - [ ] The actions are not aligned to the right
 
-- [ ] Release
+- Release
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
@@ -88,7 +90,7 @@
 
 ## Learn
 
-- [ ] Learn
+- Learn
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
@@ -97,20 +99,20 @@
   - [ ] Why does the menu scroll when the content is longer than the menu
   - [ ] Mobile menu can't be used if scolling
 
-- [ ] Tutorial
+- Tutorial
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [X] Static content is reviewed
 
-- [ ] Best practices
+- Best practices
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
   - [X] Static content is reviewed
   - [ ] Should add a title and subtitle to the page
 
-- [ ] Problems
+- Problems
   - [X] Initial integration
   - [X] All links are working
   - [X] Content is dynamic
@@ -119,98 +121,86 @@
   - [ ] The menu is truncated
   - [ ] When the page is loading, the mobile menu is showed. The default state should be hidden when no JS is loaded
 
-- [ ] Manual
+- Manual
   - [ ] Do we want to serve multiple version of the manual? If so, how? (we can't embed all the manual in the binary)
   - [ ] Do we want to offer the download files (manual PDF, PostScript, etc)? If yes, where do we host them?
 
-## Community
-
-- [ ] Event
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Events
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Blog
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Blog category
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
-- [ ] Community
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
-
 ## Packages
 
-- [ ] Packages
+- Packages
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
 
-- [ ] Package overview
+- Package overview
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
 
-- [ ] Package documentation
+- Package documentation
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
 
-- [ ] Package toplevel
+- Package toplevel
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
 
-- [ ] Packages search
+- Packages search
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
 
-  ## Legal
+## Community
 
-- [ ] Carbon footprint
+- Event
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
 
-- [ ] Privacy
+- Events
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
 
-- [ ] Terms
+- Blog
   - [ ] Initial integration
   - [ ] All links are working
   - [ ] Content is dynamic
   - [ ] Static content is reviewed
+
+- Blog category
+  - [ ] Initial integration
+  - [ ] All links are working
+  - [ ] Content is dynamic
+  - [ ] Static content is reviewed
+
+- Community
+  - [ ] Initial integration
+  - [ ] All links are working
+  - [ ] Content is dynamic
+  - [ ] Static content is reviewed
+
+## Legal
+
+- Carbon footprint
+  - [ ] Content is ready
+
+- Privacy
+  - [ ] Content is ready
+
+- Terms
+  - [ ] Content is ready
 
 ## Other
 
-- [ ] Not found
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
+- Not found
+  - [ ] Reviewed by Asaad
