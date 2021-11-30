@@ -12,6 +12,7 @@ type metadata =
   { kind : string
   ; version : string
   ; date : string
+  ; intro : string
   ; highlights : string
   }
 [@@deriving yaml]
@@ -26,6 +27,8 @@ type t =
   { kind : kind
   ; version : string
   ; date : string
+  ; intro_md : string
+  ; intro_html : string
   ; highlights_md : string
   ; highlights_html : string
   ; body_md : string
@@ -44,6 +47,8 @@ let all () =
       { kind = kind_of_string metadata.kind
       ; version = metadata.version
       ; date = metadata.date
+      ; intro_md = metadata.intro
+      ; intro_html = Omd.of_string metadata.intro |> Omd.to_html
       ; highlights_md = metadata.highlights
       ; highlights_html =
           Omd.of_string metadata.highlights
@@ -65,6 +70,8 @@ let pp ppf v =
   { kind = %a
   ; version = %a
   ; date = %a
+  ; intro_md = %a
+  ; intro_html = %a
   ; highlights_md = %a
   ; highlights_html = %a
   ; body_md = %a
@@ -76,6 +83,10 @@ let pp ppf v =
     v.version
     Pp.string
     v.date
+    Pp.string
+    v.intro_md
+    Pp.string
+    v.intro_html
     Pp.string
     v.highlights_md
     Pp.string
@@ -96,6 +107,8 @@ type t =
   { kind : kind
   ; version : string
   ; date : string
+  ; intro_md : string
+  ; intro_html : string
   ; highlights_md : string
   ; highlights_html : string
   ; body_md : string

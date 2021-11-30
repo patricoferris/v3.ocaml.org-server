@@ -112,7 +112,13 @@ let releases req =
   in
   Dream.html (Ocamlorg_frontend.releases releases)
 
-let release _req = Dream.html (Ocamlorg_frontend.release ())
+let release req =
+  let version = Dream.param "id" req in
+  match Ood.Release.get_by_version version with
+  | Some release ->
+    Dream.html (Ocamlorg_frontend.release release)
+  | None ->
+    not_found req
 
 let events _req = Dream.html (Ocamlorg_frontend.events ())
 

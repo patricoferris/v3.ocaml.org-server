@@ -80,10 +80,11 @@
   - [ ] The actions are not aligned to the right
 
 - [ ] Release
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [X] Static content is reviewed
+  - [ ] Relative links in the markdown need to be fixed
 
 ## Community
 

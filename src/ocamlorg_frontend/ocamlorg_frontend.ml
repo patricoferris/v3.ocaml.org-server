@@ -46,7 +46,7 @@ let papers ?search ~recommended_papers papers =
 
 let problems () = Problems.render ()
 
-let release () = Release.render ()
+let release release = Release.render release
 
 let releases ?search releases = Releases.render ?search releases
 

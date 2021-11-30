@@ -416,6 +416,8 @@ module Release : sig
     { kind : kind
     ; version : string
     ; date : string
+    ; intro_md : string
+    ; intro_html : string
     ; highlights_md : string
     ; highlights_html : string
     ; body_md : string

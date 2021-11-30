@@ -5,6 +5,8 @@ type t =
   { kind : kind
   ; version : string
   ; date : string
+  ; intro_md : string
+  ; intro_html : string
   ; highlights_md : string
   ; highlights_html : string
   ; body_md : string
@@ -16,6 +18,13 @@ let all =
   { kind = `Compiler
   ; version = {js|4.12.0|js}
   ; date = {js|2021-02-24|js}
+  ; intro_md = {js|This page describes OCaml version **4.12.0**, released on 2021-02-24.
+
+This release is available as an [opam](/p/ocaml/4.12.0) package.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.12.0</strong>, released on 2021-02-24.</p>
+<p>This release is available as an <a href="/p/ocaml/4.12.0">opam</a> package.</p>
+|js}
   ; highlights_md = {js|- Major progress in reducing the difference between the mainline and
   multicore runtime
 - A new configuration option `ocaml-option-nnpchecker` which emits an alarm
@@ -36,13 +45,6 @@ in the multicore runtime
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.12.0
-This page describes OCaml version **4.12.0**, released on
-2021-02-24.  Go [here](./) for a list of all releases.
-
-This release is available as an
-[OPAM](https://opam.ocaml.org/doc/Usage.html) switch.
-
 What's new
 ----------
 Some of the highlights in OCaml 4.12.0 are:
@@ -86,7 +88,7 @@ opam switch create 4.12.0+flambda+nnpchecker --package=ocaml-variants.4.12.0+opt
 ```
 
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -118,7 +120,7 @@ targets traditionally associated with other languages:
 * [Js_of_ocaml](http://ocsigen.org/js_of_ocaml/) is a stable OCaml
   to JavaScript compiler.
 
-![](../img/doc.gif "") User's manual
+User's manual
 ------------------------------------
 
 The user's manual for OCaml can be:
@@ -867,12 +869,7 @@ This is the
   (Gabriel Scherer, review by Thomas Refis and Florian Angeletti,
    report by Daniil Baturin)
 |js}
-  ; body_html = {js|<h1>OCaml 4.12.0</h1>
-<p>This page describes OCaml version <strong>4.12.0</strong>, released on
-2021-02-24.  Go <a href="./">here</a> for a list of all releases.</p>
-<p>This release is available as an
-<a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switch.</p>
-<h2>What's new</h2>
+  ; body_html = {js|<h2>What's new</h2>
 <p>Some of the highlights in OCaml 4.12.0 are:</p>
 <ul>
 <li>Major progress in reducing the difference between the mainline and
@@ -924,7 +921,7 @@ following options:</p>
 <p>For instance, one can install a switch with both <code>flambda</code> and the naked-pointer checker enabled with</p>
 <pre><code>opam switch create 4.12.0+flambda+nnpchecker --package=ocaml-variants.4.12.0+options,ocaml-option-flambda,ocaml-option-nnpchecker
 </code></pre>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.12.0.tar.gz">Source
 tarball</a>
@@ -957,7 +954,7 @@ targets traditionally associated with other languages:</p>
 to JavaScript compiler.
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.12/htmlman/index.html">browsed
@@ -1912,6 +1909,13 @@ report by Daniil Baturin)</p>
   { kind = `Compiler
   ; version = {js|4.11.2|js}
   ; date = {js|2021-02-24|js}
+  ; intro_md = {js|This page describes OCaml **4.11.2**, released on Feb 24, 2021. This is a bug-fix release of [OCaml 4.11.0](/releases/4.11.0).
+
+This release is available as an [opam](/p/ocaml/4.11.2) package.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml <strong>4.11.2</strong>, released on Feb 24, 2021. This is a bug-fix release of <a href="/releases/4.11.0">OCaml 4.11.0</a>.</p>
+<p>This release is available as an <a href="/p/ocaml/4.11.2">opam</a> package.</p>
+|js}
   ; highlights_md = {js|- Bug fixes for 4.11.1
 |js}
   ; highlights_html = {js|<ul>
@@ -1920,12 +1924,6 @@ report by Daniil Baturin)</p>
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.11.2
-
-This page describes OCaml **4.11.2**, released on Feb 24, 2021.
-This is a bug-fix release of [OCaml 4.11.0](4.11.0.html).
-
-
 Opam switches
 -------------
 
@@ -1957,7 +1955,7 @@ This release is available as multiple
 
 
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -2021,10 +2019,7 @@ Changes
   (report by Emilio Jesús Gallego Arias, analysis and fix by Stephen Dolan,
    code by Xavier Leroy, review by Hugo Heuzard and Gabriel Scherer)
 |js}
-  ; body_html = {js|<h1>OCaml 4.11.2</h1>
-<p>This page describes OCaml <strong>4.11.2</strong>, released on Feb 24, 2021.
-This is a bug-fix release of <a href="4.11.0.html">OCaml 4.11.0</a>.</p>
-<h2>Opam switches</h2>
+  ; body_html = {js|<h2>Opam switches</h2>
 <p>This release is available as multiple
 <a href="https://opam.ocaml.org/doc/Usage.html">opam</a> switches:</p>
 <ul>
@@ -2072,7 +2067,7 @@ native-code compiler</p>
 safe strings by default</p>
 </li>
 </ul>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.11.2.tar.gz">Source
 tarball</a>
@@ -2152,6 +2147,16 @@ code by Xavier Leroy, review by Hugo Heuzard and Gabriel Scherer)</p>
   { kind = `Compiler
   ; version = {js|4.10.2|js}
   ; date = {js|2020-12-08|js}
+  ; intro_md = {js|This page describes OCaml **4.10.2**, released on Dec 8, 2020.  It is an exceptional release making OCaml **4.10** available on macOS/arm64 and fixes some compatibility issues for the mingw64 and FreeBSD/amd64 platform.
+
+Note that those fixes were backported from OCaml 4.12: further improvement to the support of the macOS/arm64 platform will happen on the 4.12 branch.
+
+This release is available as an [opam](/p/ocaml/4.10.2) package.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml <strong>4.10.2</strong>, released on Dec 8, 2020.  It is an exceptional release making OCaml <strong>4.10</strong> available on macOS/arm64 and fixes some compatibility issues for the mingw64 and FreeBSD/amd64 platform.</p>
+<p>Note that those fixes were backported from OCaml 4.12: further improvement to the support of the macOS/arm64 platform will happen on the 4.12 branch.</p>
+<p>This release is available as an <a href="/p/ocaml/4.10.2">opam</a> package.</p>
+|js}
   ; highlights_md = {js|- Bug fixes for 4.10.1
 |js}
   ; highlights_html = {js|<ul>
@@ -2160,16 +2165,7 @@ code by Xavier Leroy, review by Hugo Heuzard and Gabriel Scherer)</p>
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.10.2
-
-This page describes OCaml **4.10.2**, released on Dec 8, 2020.  It is
-an exceptional release making OCaml **4.10** available on macOS/arm64 and
-fixes some compatibility issues for the mingw64 and FreeBSD/amd64 platform.
-
-Note that those fixes were backported from OCaml 4.12: further improvement to the support
-of the macOS/arm64 platform will happen on the 4.12 branch.
-
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -2207,13 +2203,7 @@ Backported from OCaml 4.12.0
 - [#9699](https://github.com/ocaml/ocaml/issues/9699), [#9981](https://github.com/ocaml/ocaml/issues/9981): Added mergeable flag tqo ELF sections containing mergeable constants. Fixes compatibility with the integrated assembler in clang 11.0.0.
 Backported from OCaml 4.12.0
 (Jacob Young, review by Nicolás Ojeda Bär)|js}
-  ; body_html = {js|<h1>OCaml 4.10.2</h1>
-<p>This page describes OCaml <strong>4.10.2</strong>, released on Dec 8, 2020.  It is
-an exceptional release making OCaml <strong>4.10</strong> available on macOS/arm64 and
-fixes some compatibility issues for the mingw64 and FreeBSD/amd64 platform.</p>
-<p>Note that those fixes were backported from OCaml 4.12: further improvement to the support
-of the macOS/arm64 platform will happen on the 4.12 branch.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+  ; body_html = {js|<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.10.2.tar.gz">Source
 tarball</a>
@@ -2266,6 +2256,13 @@ Backported from OCaml 4.12.0
   { kind = `Compiler
   ; version = {js|4.11.1|js}
   ; date = {js|2020-08-31|js}
+  ; intro_md = {js|This page describe OCaml **4.11.1**, released on Aug 31, 2020.  It is a bug-fix release of [OCaml 4.11.0](/releases/4.11.0).
+
+This release is available as an [opam](/p/ocaml/4.11.1) package.
+|js}
+  ; intro_html = {js|<p>This page describe OCaml <strong>4.11.1</strong>, released on Aug 31, 2020.  It is a bug-fix release of <a href="/releases/4.11.0">OCaml 4.11.0</a>.</p>
+<p>This release is available as an <a href="/p/ocaml/4.11.1">opam</a> package.</p>
+|js}
   ; highlights_md = {js|- Bug fixes for 4.11.0
 |js}
   ; highlights_html = {js|<ul>
@@ -2274,11 +2271,6 @@ Backported from OCaml 4.12.0
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.11.1
-
-This page describe OCaml **4.11.1**, released on Aug 31, 2020.  It is
-a bug-fix release of [OCaml 4.11.0](4.11.0.html).
-
 ### Bug fixes:
 
 - [#9856](https://github.com/ocaml/ocaml/issues/9856), [#9857](https://github.com/ocaml/ocaml/issues/9857): Prevent polymorphic type annotations from generalizing
@@ -2289,10 +2281,7 @@ a bug-fix release of [OCaml 4.11.0](4.11.0.html).
   appear in the right hand side of an explicit :> coercion
   (Florian Angeletti, report by Jerry James, review by Thomas Refis)
 |js}
-  ; body_html = {js|<h1>OCaml 4.11.1</h1>
-<p>This page describe OCaml <strong>4.11.1</strong>, released on Aug 31, 2020.  It is
-a bug-fix release of <a href="4.11.0.html">OCaml 4.11.0</a>.</p>
-<h3>Bug fixes:</h3>
+  ; body_html = {js|<h3>Bug fixes:</h3>
 <ul>
 <li>
 <p><a href="https://github.com/ocaml/ocaml/issues/9856">#9856</a>, <a href="https://github.com/ocaml/ocaml/issues/9857">#9857</a>: Prevent polymorphic type annotations from generalizing
@@ -2311,6 +2300,13 @@ appear in the right hand side of an explicit :&gt; coercion
   { kind = `Compiler
   ; version = {js|4.10.1|js}
   ; date = {js|2020-08-20|js}
+  ; intro_md = {js|This page describe OCaml **4.10.1**, released on Aug 20, 2020.  It is a bug-fix release of [OCaml 4.10.0](/releases/4.10.0).
+
+This release is available as an [opam](/p/ocaml/4.10.1) package.
+|js}
+  ; intro_html = {js|<p>This page describe OCaml <strong>4.10.1</strong>, released on Aug 20, 2020.  It is a bug-fix release of <a href="/releases/4.10.0">OCaml 4.10.0</a>.</p>
+<p>This release is available as an <a href="/p/ocaml/4.10.1">opam</a> package.</p>
+|js}
   ; highlights_md = {js|- Bug fixes for 4.10.0
 |js}
   ; highlights_html = {js|<ul>
@@ -2319,11 +2315,6 @@ appear in the right hand side of an explicit :&gt; coercion
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.10.1
-
-This page describe OCaml **4.10.1**, released on Aug 20, 2020.  It is
-a bug-fix release of [OCaml 4.10.0](4.10.0.html).
-
 ### Runtime system:
 
 - [#9344](https://github.com/ocaml/ocaml/issues/9344), [#9368](https://github.com/ocaml/ocaml/issues/9368): Disable exception backtraces in bytecode programs
@@ -2363,10 +2354,7 @@ a bug-fix release of [OCaml 4.10.0](4.10.0.html).
 - [#9552](https://github.com/ocaml/ocaml/issues/9552): restore ocamloptp build and installation
   (Florian Angeletti, review by David Allsopp and Xavier Leroy)
 |js}
-  ; body_html = {js|<h1>OCaml 4.10.1</h1>
-<p>This page describe OCaml <strong>4.10.1</strong>, released on Aug 20, 2020.  It is
-a bug-fix release of <a href="4.10.0.html">OCaml 4.10.0</a>.</p>
-<h3>Runtime system:</h3>
+  ; body_html = {js|<h3>Runtime system:</h3>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/issues/9344">#9344</a>, <a href="https://github.com/ocaml/ocaml/issues/9368">#9368</a>: Disable exception backtraces in bytecode programs
 built with &quot;-output-complete-exe&quot;. At the moment, such programs do
@@ -2420,6 +2408,13 @@ blue, which was not the case with the best-fit allocator.
   { kind = `Compiler
   ; version = {js|4.11.0|js}
   ; date = {js|2020-08-19|js}
+  ; intro_md = {js|This page describes OCaml version **4.11.0**, released on 2020-08-19. 
+
+This release is available as an [opam](/p/ocaml/4.11.0) package.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.11.0</strong>, released on 2020-08-19.</p>
+<p>This release is available as an <a href="/p/ocaml/4.11.0">opam</a> package.</p>
+|js}
   ; highlights_md = {js|- Statmemprof: a new statistical memory profiler
 - A new instrumented runtime that logs runtime statistics in a standard format
 - A native backend for the RISC-V architecture
@@ -2449,9 +2444,8 @@ blue, which was not the case with the best-fit allocator.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.11.0
-This page describes OCaml version **4.11.0**, released on
-2020-08-19.  Go [here](./) for a list of all releases.
+Opam switches
+-------------
 
 This release is available as multiple
 [OPAM](https://opam.ocaml.org/doc/Usage.html) switches:
@@ -2497,7 +2491,7 @@ For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 [changelog](#Changes).
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -2535,7 +2529,7 @@ targets traditionally associated with other languages:
 * [OCaml-java](http://www.ocamljava.org/) is a stable OCaml to
   Java compiler.
 
-![](../img/doc.gif "") User's manual
+User's manual
 ------------------------------------
 
 The user's manual for OCaml can be:
@@ -3122,9 +3116,7 @@ Called from Foo.bar in file "foo.ml", line 16, characters 42-53
   to better ensure that members are correctly spaced.
   (Antonin Décimo, review by David Allsopp and Xavier Leroy)
 |js}
-  ; body_html = {js|<h1>OCaml 4.11.0</h1>
-<p>This page describes OCaml version <strong>4.11.0</strong>, released on
-2020-08-19.  Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam switches</h2>
 <p>This release is available as multiple
 <a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switches:</p>
 <ul>
@@ -3195,7 +3187,7 @@ native-code compiler</p>
 <p>For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 <a href="#Changes">changelog</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.11.0.tar.gz">Source
 tarball</a>
@@ -3236,7 +3228,7 @@ an explanation of how it differs from <code>js_of_ocaml</code>.
 Java compiler.
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.11/htmlman/index.html">browsed
@@ -3972,6 +3964,10 @@ to better ensure that members are correctly spaced.
   { kind = `Compiler
   ; version = {js|4.09.1|js}
   ; date = {js|2020-03-16|js}
+  ; intro_md = {js|This page describe OCaml **4.09.1**, released on Mar 16, 2020.  It is a bug-fix release of [OCaml 4.09.0](/releases/4.09.0).
+|js}
+  ; intro_html = {js|<p>This page describe OCaml <strong>4.09.1</strong>, released on Mar 16, 2020.  It is a bug-fix release of <a href="/releases/4.09.0">OCaml 4.09.0</a>.</p>
+|js}
   ; highlights_md = {js|- Bug fixes for 4.09.0
 |js}
   ; highlights_html = {js|<ul>
@@ -3980,11 +3976,6 @@ to better ensure that members are correctly spaced.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.09.1
-
-This page describe OCaml **4.09.1**, released on Mar 16, 2020.  It is
-a bug-fix release of [OCaml 4.09.0](4.09.0.html).
-
 ### Bug fixes:
 
 - [#8855](https://github.com/ocaml/ocaml/issues/8855), [#8858](https://github.com/ocaml/ocaml/issues/8858): Links for tools not created when installing with
@@ -4029,10 +4020,7 @@ a bug-fix release of [OCaml 4.09.0](4.09.0.html).
   (Jacques-Henri Jourdan, review by Stephen Dolan, Xavier Leroy and
    Gabriel Scherer)
 |js}
-  ; body_html = {js|<h1>OCaml 4.09.1</h1>
-<p>This page describe OCaml <strong>4.09.1</strong>, released on Mar 16, 2020.  It is
-a bug-fix release of <a href="4.09.0.html">OCaml 4.09.0</a>.</p>
-<h3>Bug fixes:</h3>
+  ; body_html = {js|<h3>Bug fixes:</h3>
 <ul>
 <li>
 <p><a href="https://github.com/ocaml/ocaml/issues/8855">#8855</a>, <a href="https://github.com/ocaml/ocaml/issues/8858">#8858</a>: Links for tools not created when installing with
@@ -4093,6 +4081,10 @@ Gabriel Scherer)</p>
   { kind = `Compiler
   ; version = {js|4.10.0|js}
   ; date = {js|2020-02-21|js}
+  ; intro_md = {js|This page describes OCaml version **4.10.0**, released on 2020-02-21. 
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.10.0</strong>, released on 2020-02-21.</p>
+|js}
   ; highlights_md = {js|- A new best-fit allocator for the major heap which reducing both GC cost an
   memory usage.
 - Immutable strings are now enforced at configuration time - User-defined indexing operators for multidimensional arrays - Coming soon: statmemprof, a new statistical memory profiler. The external API
@@ -4111,9 +4103,8 @@ will be release next version.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.10.0
-This page describes OCaml version **4.10.0**, released on
-2020-02-21.  Go [here](./) for a list of all releases.
+Opam switches
+-------------
 
 This release is available as multiple
 [OPAM](https://opam.ocaml.org/doc/Usage.html) switches:
@@ -4160,7 +4151,7 @@ For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 [changelog](#Changes).
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -4198,7 +4189,7 @@ targets traditionally associated with other languages:
 * [OCaml-java](http://www.ocamljava.org/) is a stable OCaml to
   Java compiler.
 
-![](../img/doc.gif "") User's manual
+User's manual
 ------------------------------------
 
 The user's manual for OCaml can be:
@@ -4729,9 +4720,7 @@ This is the
   (Kate Deplaix and David Allsopp, review by Sébastien Hinderer
    and Gabriel Scherer )
 |js}
-  ; body_html = {js|<h1>OCaml 4.10.0</h1>
-<p>This page describes OCaml version <strong>4.10.0</strong>, released on
-2020-02-21.  Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam switches</h2>
 <p>This release is available as multiple
 <a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switches:</p>
 <ul>
@@ -4802,7 +4791,7 @@ will be release next version.
 <p>For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 <a href="#Changes">changelog</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.10.0.tar.gz">Source
 tarball</a>
@@ -4843,7 +4832,7 @@ an explanation of how it differs from <code>js_of_ocaml</code>.
 Java compiler.
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.10/htmlman/index.html">browsed
@@ -5512,6 +5501,10 @@ and Gabriel Scherer )</p>
   { kind = `Compiler
   ; version = {js|4.09.0|js}
   ; date = {js|2019-09-18|js}
+  ; intro_md = {js|This page describes OCaml version **4.09.0**, released on 2019-09-18. 
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.09.0</strong>, released on 2019-09-18.</p>
+|js}
   ; highlights_md = {js|- New optimisations, in particular for affine functions in matches, for instance
   ```ocaml
     type t = A | B | C
@@ -5536,9 +5529,8 @@ and Gabriel Scherer )</p>
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.09.0
-This page describes OCaml version **4.09.0**, released on
-2019-09-18.  Go [here](./) for a list of all releases.
+Opam Switches
+-------------
 
 This release is available as multiple
 [OPAM](https://opam.ocaml.org/doc/Usage.html) switches:
@@ -5591,7 +5583,7 @@ For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 [changelog](#Changes).
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -5629,7 +5621,7 @@ targets traditionally associated with other languages:
 * [OCaml-java](http://www.ocamljava.org/) is a stable OCaml to
   Java compiler.
 
-![](../img/doc.gif "") User's manual
+User's manual
 ------------------------------------
 
 The user's manual for OCaml can be:
@@ -5934,9 +5926,7 @@ This is the
 - [#8944](https://github.com/ocaml/ocaml/issues/8944): Fix "open struct .. end" on clambda backend
   (Thomas Refis, review by Leo White, report by Damon Wang and Mark Shinwell)
 |js}
-  ; body_html = {js|<h1>OCaml 4.09.0</h1>
-<p>This page describes OCaml version <strong>4.09.0</strong>, released on
-2019-09-18.  Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam Switches</h2>
 <p>This release is available as multiple
 <a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switches:</p>
 <ul>
@@ -6012,7 +6002,7 @@ native-code compiler</p>
 <p>For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 <a href="#Changes">changelog</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.09.0.tar.gz">Source
 tarball</a>
@@ -6053,7 +6043,7 @@ an explanation of how it differs from <code>js_of_ocaml</code>.
 Java compiler.
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.09/htmlman/index.html">browsed
@@ -6441,6 +6431,10 @@ report by Aleksandr Kuzmenko)</p>
   { kind = `Compiler
   ; version = {js|4.08.1|js}
   ; date = {js|2019-08-05|js}
+  ; intro_md = {js|This page describe OCaml **4.08.1**, released on Aug 5, 2019.  It is a bug-fix release of [OCaml 4.08.0](/releases/4.08.0).
+|js}
+  ; intro_html = {js|<p>This page describe OCaml <strong>4.08.1</strong>, released on Aug 5, 2019.  It is a bug-fix release of <a href="/releases/4.08.0">OCaml 4.08.0</a>.</p>
+|js}
   ; highlights_md = {js|- Bug fixes for 4.08.0
 |js}
   ; highlights_html = {js|<ul>
@@ -6449,11 +6443,6 @@ report by Aleksandr Kuzmenko)</p>
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.08.1
-
-This page describe OCaml **4.08.1**, released on Aug 5, 2019.  It is
-a bug-fix release of [OCaml 4.08.0](4.08.0.html).
-
 ### Bug fixes:
 
 - [#7887](https://caml.inria.fr/mantis/view.php?id=7887):
@@ -6488,10 +6477,7 @@ a bug-fix release of [OCaml 4.08.0](4.08.0.html).
   fix use of off_t on 32-bit systems.
   (Stephen Dolan, report by Richard Jones, review by Xavier Leroy)
 |js}
-  ; body_html = {js|<h1>OCaml 4.08.1</h1>
-<p>This page describe OCaml <strong>4.08.1</strong>, released on Aug 5, 2019.  It is
-a bug-fix release of <a href="4.08.0.html">OCaml 4.08.0</a>.</p>
-<h3>Bug fixes:</h3>
+  ; body_html = {js|<h3>Bug fixes:</h3>
 <ul>
 <li>
 <p><a href="https://caml.inria.fr/mantis/view.php?id=7887">#7887</a>:
@@ -6538,6 +6524,10 @@ fix use of off_t on 32-bit systems.
   { kind = `Compiler
   ; version = {js|4.08.0|js}
   ; date = {js|2019-06-14|js}
+  ; intro_md = {js|This page describes OCaml version **4.08.0**, released on 2019-06-14. 
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.08.0</strong>, released on 2019-06-14.</p>
+|js}
   ; highlights_md = {js|- Binding operators (`let*`, `let+`, `and*`, etc). They can be used to
   streamline monadic code.
 - `open` now applies to arbitrary module expression in structures and
@@ -6571,9 +6561,8 @@ and a new <code>Float.Array</code> submodule.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.08.0
-This page describes OCaml version **4.08.0**, released on
-2019-06-14.  Go [here](./) for a list of all releases.
+Opam Switches
+-------------
 
 This release is available as multiple
 [OPAM](https://opam.ocaml.org/doc/Usage.html) switches:
@@ -6625,7 +6614,7 @@ bug fixes, optimizations, etc., please consult the
 [changelog](#Changes).
 
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -6663,7 +6652,7 @@ targets traditionally associated with other languages:
 * [OCaml-java](http://www.ocamljava.org/) is a stable OCaml to
   Java compiler.
 
-![](../img/doc.gif "") User's manual
+User's manual
 ------------------------------------
 
 The user's manual for OCaml can be:
@@ -7955,9 +7944,7 @@ This is the
   (Jacques Garrigue, review by Leo White and Thomas Refis,
   report by Jeremy Yallop)
 |js}
-  ; body_html = {js|<h1>OCaml 4.08.0</h1>
-<p>This page describes OCaml version <strong>4.08.0</strong>, released on
-2019-06-14.  Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam Switches</h2>
 <p>This release is available as multiple
 <a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switches:</p>
 <ul>
@@ -8025,7 +8012,7 @@ and a new <code>Float.Array</code> submodule.
 <p>For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 <a href="#Changes">changelog</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.08.0.tar.gz">Source
 tarball</a>
@@ -8066,7 +8053,7 @@ an explanation of how it differs from <code>js_of_ocaml</code>.
 Java compiler.
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.08/htmlman/index.html">browsed
@@ -9634,6 +9621,10 @@ report by Jeremy Yallop)</p>
   { kind = `Compiler
   ; version = {js|4.07.1|js}
   ; date = {js|2018-10-04|js}
+  ; intro_md = {js|This page describes OCaml version **4.07.1**, released on 2018-10-04. 
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.07.1</strong>, released on 2018-10-04.</p>
+|js}
   ; highlights_md = {js|- Bug fixes for 4.07.0
 |js}
   ; highlights_html = {js|<ul>
@@ -9642,9 +9633,8 @@ report by Jeremy Yallop)</p>
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.07.1
-This page describes OCaml version **4.07.1**, released on
-2018-10-04.  Go [here](./) for a list of all releases.
+Opam Switches
+-------------
 
 This release is available as multiple
 [OPAM](https://opam.ocaml.org/doc/Usage.html) switches:
@@ -9669,7 +9659,7 @@ This is a bug-fix release, please consult the
 [changelog](#Changes).
 
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -9708,7 +9698,7 @@ targets traditionally associated with other languages:
 * [OCaml-java](http://www.ocamljava.org/) is a stable OCaml to
   Java compiler.
 
-![](../img/doc.gif "") User's manual
+User's manual
 ------------------------------------
 
 The user's manual for OCaml can be:
@@ -9785,9 +9775,7 @@ This is the
   -principal causes assertion failure in type checker
   (Jacques Garrigue, report by Markus Mottl, review by Thomas Refis)
 |js}
-  ; body_html = {js|<h1>OCaml 4.07.1</h1>
-<p>This page describes OCaml version <strong>4.07.1</strong>, released on
-2018-10-04.  Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam Switches</h2>
 <p>This release is available as multiple
 <a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switches:</p>
 <ul>
@@ -9816,7 +9804,7 @@ flambda activated
 <h2>What's new</h2>
 <p>This is a bug-fix release, please consult the
 <a href="#Changes">changelog</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.07.1.tar.gz">Source
 tarball</a>
@@ -9858,7 +9846,7 @@ release of OCaml.
 Java compiler.
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.07/htmlman/index.html">browsed
@@ -9949,6 +9937,10 @@ Angeletti, review by Jacques Garrigue)</p>
   { kind = `Compiler
   ; version = {js|4.07.0|js}
   ; date = {js|2018-07-10|js}
+  ; intro_md = {js|This page describes OCaml version **4.07.0**, released on 2018-07-10. 
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.07.0</strong>, released on 2018-07-10.</p>
+|js}
   ; highlights_md = {js|- The standard library is now packed into a module called `Stdlib`, which is
   open by default. This makes it easier to add new modules to the standard
   library without clashing with user-defined modules.
@@ -9969,9 +9961,8 @@ compiler make them much easier to understand.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.07.0
-This page describes OCaml version **4.07.0**, released on
-2018-07-10.  Go [here](./) for a list of all releases.
+Opam Switches
+-------------
 
 This release is available as multiple
 [OPAM](https://opam.ocaml.org/doc/Usage.html) switches:
@@ -10014,7 +10005,7 @@ bug fixes, optimizations, etc., please consult the
 [changelog](#Changes).
 
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -10052,7 +10043,7 @@ targets traditionally associated with other languages:
 * [OCaml-java](http://www.ocamljava.org/) is a stable OCaml to
   Java compiler.
 
-![](../img/doc.gif "") User's manual
+User's manual
 ------------------------------------
 
 The user's manual for OCaml can be:
@@ -10859,9 +10850,7 @@ This is the
   that could lead to crashes when `Gc.finalise_last` is used
   (report and fix by Yuriy Vostrikov, review by François Bobot)
 |js}
-  ; body_html = {js|<h1>OCaml 4.07.0</h1>
-<p>This page describes OCaml version <strong>4.07.0</strong>, released on
-2018-07-10.  Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam Switches</h2>
 <p>This release is available as multiple
 <a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switches:</p>
 <ul>
@@ -10913,7 +10902,7 @@ compiler make them much easier to understand.</p>
 <p>For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 <a href="#Changes">changelog</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.07.0.tar.gz">Source
 tarball</a>
@@ -10954,7 +10943,7 @@ an explanation of how it differs from js_of_ocaml.
 Java compiler.
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.07/htmlman/index.html">browsed
@@ -11937,6 +11926,10 @@ that could lead to crashes when <code>Gc.finalise_last</code> is used
   { kind = `Compiler
   ; version = {js|4.06.0|js}
   ; date = {js|2017-11-03|js}
+  ; intro_md = {js|This page describes OCaml version **4.06.0**, released on 2017-11-03. 
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.06.0</strong>, released on 2017-11-03.</p>
+|js}
   ; highlights_md = {js|- Strings (type `string`) are now immutable by default. In-place
   modification must use the type `bytes` of byte sequences, which is
   distinct from `string`.  This corresponds to the `-safe-string`
@@ -11994,9 +11987,8 @@ found as a separate OPAM package.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.06.0
-This page describes OCaml version **4.06.0**, released on
-2017-11-03.  Go [here](./) for a list of all releases.
+Opam Switches
+-------------
 
 This release is available as multiple
 [OPAM](https://opam.ocaml.org/doc/Usage.html) switches:
@@ -12052,7 +12044,7 @@ bug fixes, optimizations, etc., please consult the
 [changelog](#Changes).
 
 
-![](../img/source.gif "") Source distribution
+Source distribution
 ---------------------------------------------
 
 - [Source
@@ -12090,7 +12082,7 @@ targets traditionally associated with other languages:
 * [OCaml-java](http://www.ocamljava.org/) is a stable OCaml to
   Java compiler.
 
-![](../img/doc.gif "") User's manual
+User's manual
 ------------------------------------
 
 The user's manual for OCaml can be:
@@ -12981,9 +12973,7 @@ This is the
 - [GPR#1407](https://github.com/ocaml/ocaml/pull/1407): Fix `raw_spacetime_lib`.  
   (Leo White, review by Gabriel Scherer and Damien Doligez)
 |js}
-  ; body_html = {js|<h1>OCaml 4.06.0</h1>
-<p>This page describes OCaml version <strong>4.06.0</strong>, released on
-2017-11-03.  Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam Switches</h2>
 <p>This release is available as multiple
 <a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switches:</p>
 <ul>
@@ -13049,7 +13039,7 @@ found as a separate OPAM package.</p>
 <p>For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 <a href="#Changes">changelog</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.06.0.tar.gz">Source
 tarball</a>
@@ -13090,7 +13080,7 @@ an explanation of how it differs from js_of_ocaml.
 Java compiler.
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.06/htmlman/index.html">browsed
@@ -14194,6 +14184,10 @@ types.<br />
   { kind = `Compiler
   ; version = {js|4.05.0|js}
   ; date = {js|2017-07-13|js}
+  ; intro_md = {js|This page describes OCaml version **4.05.0**, released on 2017-07-13.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.05.0</strong>, released on 2017-07-13.</p>
+|js}
   ; highlights_md = {js|- Some improvements in performance and usability. - Many bug fixes
 |js}
   ; highlights_html = {js|<ul>
@@ -14202,10 +14196,8 @@ types.<br />
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.05.0
-
-This page describes OCaml version **4.05.0**, released on
-2017-07-13. Go [here](./) for a list of all releases.
+Opam Switches
+-------------
 
 This release is available as multiple [OPAM](https://opam.ocaml.org/doc/Usage.html) switches:
 
@@ -14226,7 +14218,7 @@ bug fixes, optimizations, etc., please consult the
 is also a crowdsourced [annotated
 changelog for 4.05.0](https://github.com/gasche/ocaml-releases-change-explanation/wiki/4.05.0-changes-explanation) which contains extra commentaries and examples.
 
-## ![](../img/source.gif "") Source distribution
+## Source distribution
 
 - [Source
   tarball](https://github.com/ocaml/ocaml/archive/4.05.0.tar.gz)
@@ -14265,7 +14257,7 @@ targets traditionally associated with other languages:
 * [OCaml-java](http://www.ocamljava.org/) is a stable OCaml to
   Java compiler.
 
-## ![](../img/doc.gif "") User's manual
+## User's manual
 
 The user's manual for OCaml can be:
 
@@ -14291,9 +14283,7 @@ The user's manual for OCaml can be:
 
 
 |js}
-  ; body_html = {js|<h1>OCaml 4.05.0</h1>
-<p>This page describes OCaml version <strong>4.05.0</strong>, released on
-2017-07-13. Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam Switches</h2>
 <p>This release is available as multiple <a href="https://opam.ocaml.org/doc/Usage.html">OPAM</a> switches:</p>
 <ul>
 <li>4.05.0 — Official 4.05.0 release
@@ -14317,7 +14307,7 @@ bug fixes, optimizations, etc., please consult the
 <a href="4.05/notes/Changes">changelog</a>. There
 is also a crowdsourced <a href="https://github.com/gasche/ocaml-releases-change-explanation/wiki/4.05.0-changes-explanation">annotated
 changelog for 4.05.0</a> which contains extra commentaries and examples.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li>
 <p><a href="https://github.com/ocaml/ocaml/archive/4.05.0.tar.gz">Source
@@ -14363,7 +14353,7 @@ for an explanation of how it differs from js_of_ocaml.</p>
 Java compiler.</p>
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li>
@@ -14397,6 +14387,10 @@ of Emacs info files,</p>
   { kind = `Compiler
   ; version = {js|4.04.0|js}
   ; date = {js|2017-06-23|js}
+  ; intro_md = {js|This page describes OCaml version **4.04.2**, released on 2017-06-23.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.04.2</strong>, released on 2017-06-23.</p>
+|js}
   ; highlights_md = {js|- Exceptions can be declared locally within an expression, with syntax
   `let exception ... in ...`
 - Optimized memory representation for immutable records with a single
@@ -14419,9 +14413,8 @@ definition.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.04.2
-This page describes OCaml version **4.04.2**, released on
-2017-06-23. Go [here](./) for a list of all releases.
+Opam Switches
+-------------
 
 This release is available as multiple OPAM switches:
 
@@ -14499,7 +14492,7 @@ bug fixes, optimizations, etc., please consult the
 [changelog](4.04/notes/Changes).
 
 
-## ![](../img/source.gif "") Source distribution
+## Source distribution
 
 - [Source
   tarball](https://github.com/ocaml/ocaml/archive/4.04.2.tar.gz)
@@ -14522,14 +14515,14 @@ file of the distribution provides detailed compilation and
 installation instructions.
 
 
-## ![](../img/linux.gif "") Binary distributions for Linux
+## Binary distributions for Linux
 
 Binary distributions for CentOS, Debian, Fedora, RHEL, Ubuntu are
 available
 [here](http://software.opensuse.org/download.html?project=home%3Aocaml&package=ocaml).
 
 
-## ![](../img/windows.gif "") Binary distribution for Microsoft Windows
+## Binary distribution for Microsoft Windows
 
 Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
@@ -14582,7 +14575,7 @@ targets traditionally associated with other languages:
   Java compiler.
 
 
-## ![](../img/doc.gif "") User's manual
+## User's manual
 
 The user's manual for OCaml can be:
 
@@ -14608,9 +14601,7 @@ The user's manual for OCaml can be:
 
 
 |js}
-  ; body_html = {js|<h1>OCaml 4.04.2</h1>
-<p>This page describes OCaml version <strong>4.04.2</strong>, released on
-2017-06-23. Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam Switches</h2>
 <p>This release is available as multiple OPAM switches:</p>
 <ul>
 <li>4.04.2 — Official 4.04.2 release
@@ -14688,7 +14679,7 @@ definition.</p>
 <p>For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 <a href="4.04/notes/Changes">changelog</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li>
 <p><a href="https://github.com/ocaml/ocaml/archive/4.04.2.tar.gz">Source
@@ -14714,11 +14705,11 @@ installation are automated by powerful package managers.</p>
 <p>The <a href="4.04/notes/INSTALL.adoc">INSTALL</a>
 file of the distribution provides detailed compilation and
 installation instructions.</p>
-<h2><img src="../img/linux.gif" alt="" title="" /> Binary distributions for Linux</h2>
+<h2>Binary distributions for Linux</h2>
 <p>Binary distributions for CentOS, Debian, Fedora, RHEL, Ubuntu are
 available
 <a href="http://software.opensuse.org/download.html?project=home%3Aocaml&amp;package=ocaml">here</a>.</p>
-<h2><img src="../img/windows.gif" alt="" title="" /> Binary distribution for Microsoft Windows</h2>
+<h2>Binary distribution for Microsoft Windows</h2>
 <p>Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of <a href="/learn/portability.html">portability
 issues</a> or the
@@ -14773,7 +14764,7 @@ for an explanation of how it differs from js_of_ocaml.</p>
 Java compiler.</p>
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li>
@@ -14807,6 +14798,10 @@ of Emacs info files,</p>
   { kind = `Compiler
   ; version = {js|4.03.0|js}
   ; date = {js|2016-04-25|js}
+  ; intro_md = {js|This page describes OCaml version **4.03.0**, released on 2016-04-25.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.03.0</strong>, released on 2016-04-25.</p>
+|js}
   ; highlights_md = {js|- A new intermediate representation, called Flambda, was added to the
   native-code compiler, along with several new optimizations over the
   Flambda representation, such as aggressive function inlining. (The
@@ -14877,9 +14872,8 @@ under the LGPL v2.1 with static linking exception.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.03.0
-This page describes OCaml version **4.03.0**, released on
-2016-04-25. Go [here](./) for a list of all releases.
+Opam Switches
+-------------
 
 This release is available as multiple OPAM switches:
 
@@ -14926,7 +14920,7 @@ bug fixes, optimizations, etc., please consult the
 [release notes](4.03/notes/Changes).
 
 
-## ![](../img/source.gif "") Source distribution
+## Source distribution
 
 - [Source
   tarball](https://github.com/ocaml/ocaml/archive/4.03.0.tar.gz)
@@ -14949,14 +14943,14 @@ file of the distribution provides detailed compilation and
 installation instructions.
 
 
-## ![](../img/linux.gif "") Binary distributions for Linux
+## Binary distributions for Linux
 
 Binary distributions for CentOS, Debian, Fedora, RHEL, Ubuntu are
 available
 [here](http://software.opensuse.org/download.html?project=home%3Aocaml&package=ocaml).
 
 
-## ![](../img/windows.gif "") Binary distribution for Microsoft Windows
+## Binary distribution for Microsoft Windows
 
 Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
@@ -15004,7 +14998,7 @@ targets traditionally associated with other languages:
   Java compiler (stable)
 
 
-## ![](../img/doc.gif "") User's manual
+## User's manual
 
 The user's manual for OCaml can be:
 
@@ -15032,9 +15026,7 @@ The user's manual for OCaml can be:
   [browsed online](http://www.askra.de/software/ocaml-doc/4.03/).
 
 |js}
-  ; body_html = {js|<h1>OCaml 4.03.0</h1>
-<p>This page describes OCaml version <strong>4.03.0</strong>, released on
-2016-04-25. Go <a href="./">here</a> for a list of all releases.</p>
+  ; body_html = {js|<h2>Opam Switches</h2>
 <p>This release is available as multiple OPAM switches:</p>
 <ul>
 <li>4.03.0 — Official 4.03.0 release
@@ -15090,7 +15082,7 @@ under the LGPL v2.1 with static linking exception.
 <p>For a comprehensive list of changes and details on all new features,
 bug fixes, optimizations, etc., please consult the
 <a href="4.03/notes/Changes">release notes</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li>
 <p><a href="https://github.com/ocaml/ocaml/archive/4.03.0.tar.gz">Source
@@ -15116,11 +15108,11 @@ installation are automated by powerful package managers.</p>
 <p>The <a href="4.03/notes/INSTALL.adoc">INSTALL</a>
 file of the distribution provides detailed compilation and
 installation instructions.</p>
-<h2><img src="../img/linux.gif" alt="" title="" /> Binary distributions for Linux</h2>
+<h2>Binary distributions for Linux</h2>
 <p>Binary distributions for CentOS, Debian, Fedora, RHEL, Ubuntu are
 available
 <a href="http://software.opensuse.org/download.html?project=home%3Aocaml&amp;package=ocaml">here</a>.</p>
-<h2><img src="../img/windows.gif" alt="" title="" /> Binary distribution for Microsoft Windows</h2>
+<h2>Binary distribution for Microsoft Windows</h2>
 <p>Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of <a href="/learn/portability.html">portability
 issues</a> or the
@@ -15169,7 +15161,7 @@ to Javascript compiler (stable)</p>
 Java compiler (stable)</p>
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li>
@@ -15207,6 +15199,10 @@ of Emacs info files,</p>
   { kind = `Compiler
   ; version = {js|4.06.1|js}
   ; date = {js|2016-02-16|js}
+  ; intro_md = {js|This page describe OCaml **4.06.1**, released on Feb 16, 2018.  It is a bug-fix release of [OCaml 4.06.0](/releases/4.06.0).
+|js}
+  ; intro_html = {js|<p>This page describe OCaml <strong>4.06.1</strong>, released on Feb 16, 2018.  It is a bug-fix release of <a href="/releases/4.06.0">OCaml 4.06.0</a>.</p>
+|js}
   ; highlights_md = {js|- Bug fixes for 4.06.0
 |js}
   ; highlights_html = {js|<ul>
@@ -15215,13 +15211,6 @@ of Emacs info files,</p>
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.06.1
-
-This page describe OCaml **4.06.1**, released on Feb 16, 2018.  It is
-a bug-fix release of [OCaml 4.06.0](4.06.html).
-
-It is available as an OPAM switch and as a source download from:
-https://github.com/ocaml/ocaml/releases
 
 Changes (Bug fixes)
 -------------------
@@ -15262,12 +15251,7 @@ Changes (Bug fixes)
   Make pattern matching compilation more robust to ill-typed columns
   (Gabriel Scherer and Thomas Refis, review by Luc Maranget)
 |js}
-  ; body_html = {js|<h1>OCaml 4.06.1</h1>
-<p>This page describe OCaml <strong>4.06.1</strong>, released on Feb 16, 2018.  It is
-a bug-fix release of <a href="4.06.html">OCaml 4.06.0</a>.</p>
-<p>It is available as an OPAM switch and as a source download from:
-https://github.com/ocaml/ocaml/releases</p>
-<h2>Changes (Bug fixes)</h2>
+  ; body_html = {js|<h2>Changes (Bug fixes)</h2>
 <ul>
 <li>
 <p><a href="https://caml.inria.fr/mantis/view.php?id=7661">MPR#7661</a>,
@@ -15317,8 +15301,12 @@ Make pattern matching compilation more robust to ill-typed columns
   };
  
   { kind = `Compiler
-  ; version = {js|4.02.0|js}
+  ; version = {js|4.02.3|js}
   ; date = {js|2015-07-27|js}
+  ; intro_md = {js|This page describes OCaml version **4.02.3**, released on 2015-07-27.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.02.3</strong>, released on 2015-07-27.</p>
+|js}
   ; highlights_md = {js|- In a first step towards making strings immutable, a type bytes of
   mutable byte arrays and a supporting library module `Bytes` were
   introduced. By default, `bytes` is a synonym for `string`, so
@@ -15422,14 +15410,6 @@ distribution. They are now separate projects.
 |js}
   ; body_md = {js|
 # OCaml 4.02.3
-This page describes OCaml version **4.02.3**,
-released on 2015-07-27. Go [here](./) for a list of all releases.
-
-Three previous minor versions were released: 4.02.0 on 2014-08-29, 
-4.02.1 on 2014-10-14 and 4.02.2 on 2015-06-17. Links below point to 4.02.3 files. 
-See
-[here](https://github.com/ocaml/ocaml/releases) for all 4.02.*
-files.
 
 
 ## What's New
@@ -15495,7 +15475,7 @@ changes](4.02/notes/Changes).
 
 
 
-## ![](../img/source.gif "") Source distribution
+## Source distribution
 
 - [Source
   tarball](https://github.com/ocaml/ocaml/archive/4.02.3.tar.gz)
@@ -15518,14 +15498,14 @@ file of the distribution provides detailed compilation and
 installation instruction.
 
 
-## ![](../img/linux.gif "") Binary distributions for Linux
+## Binary distributions for Linux
 
 Binary distributions for CentOS, Debian, Fedora, RHEL, Ubuntu are
 available
 [here](http://software.opensuse.org/download.html?project=home%3Aocaml&package=ocaml).
 
 
-## ![](../img/windows.gif "") Binary distribution for Microsoft Windows
+## Binary distribution for Microsoft Windows
 
 Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
@@ -15573,7 +15553,7 @@ targets traditionally associated with other languages:
   Java compiler (stable)
 
 
-## ![](../img/doc.gif "") User's manual
+## User's manual
 
 The user's manual for OCaml can be:
 
@@ -15609,13 +15589,6 @@ linking). See the full [license](/docs/license.html). Members of the
 more liberal license (BSD-like).
 |js}
   ; body_html = {js|<h1>OCaml 4.02.3</h1>
-<p>This page describes OCaml version <strong>4.02.3</strong>,
-released on 2015-07-27. Go <a href="./">here</a> for a list of all releases.</p>
-<p>Three previous minor versions were released: 4.02.0 on 2014-08-29,
-4.02.1 on 2014-10-14 and 4.02.2 on 2015-06-17. Links below point to 4.02.3 files.
-See
-<a href="https://github.com/ocaml/ocaml/releases">here</a> for all 4.02.*
-files.</p>
 <h2>What's New</h2>
 <p>Some of the highlights in release 4.02 are:</p>
 <ul>
@@ -15687,7 +15660,7 @@ distribution. They are now separate projects.</p>
 </ul>
 <p>For more information, please consult the <a href="4.02/notes/Changes">comprehensive list of
 changes</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" /> Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li>
 <p><a href="https://github.com/ocaml/ocaml/archive/4.02.3.tar.gz">Source
@@ -15713,11 +15686,11 @@ sources and to all previous public releases.</p>
 <p>The <a href="4.02/notes/INSTALL">INSTALL</a>
 file of the distribution provides detailed compilation and
 installation instruction.</p>
-<h2><img src="../img/linux.gif" alt="" title="" /> Binary distributions for Linux</h2>
+<h2>Binary distributions for Linux</h2>
 <p>Binary distributions for CentOS, Debian, Fedora, RHEL, Ubuntu are
 available
 <a href="http://software.opensuse.org/download.html?project=home%3Aocaml&amp;package=ocaml">here</a>.</p>
-<h2><img src="../img/windows.gif" alt="" title="" /> Binary distribution for Microsoft Windows</h2>
+<h2>Binary distribution for Microsoft Windows</h2>
 <p>Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of <a href="/learn/portability.html">portability
 issues</a> or the
@@ -15766,7 +15739,7 @@ to Javascript compiler (stable)</p>
 Java compiler (stable)</p>
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" /> User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li>
@@ -15808,42 +15781,76 @@ more liberal license (BSD-like).</p>
   };
  
   { kind = `Compiler
-  ; version = {js|4.00.1|js}
+  ; version = {js|4.01.0|js}
   ; date = {js|2013-09-12|js}
-  ; highlights_md = {js|- It is now possible to have several variant constructors or record fields of the same name in scope, and type information will be used to disambiguate which one is used -- instead of always using the last one. See [this post](http://www.lexifi.com/blog/type-based-selection-label-and-constructors) for a more detailed description of the feature.
-- New warnings can be activated to warn about identifiers that are used after having been shadowed by an `open` construct. The `open` keyword can be written `open!` to silence this warning (as `method!` silences the method warning).
+  ; intro_md = {js|This page describes OCaml version **4.01.0**, released on 2013-09-12.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.01.0</strong>, released on 2013-09-12.</p>
+|js}
+  ; highlights_md = {js|- It is now possible to have several variant constructors or record
+  fields of the same name in scope, and type information will be used
+  to disambiguate which one is used -- instead of always using the
+  last one. See [this
+  post](http://www.lexifi.com/blog/type-based-selection-label-and-constructors)
+  for a more detailed description of the feature.
+
+- New warnings can be activated to warn about identifiers that are
+  used after having been shadowed by an `open` construct. The `open`
+  keyword can be written `open!` to silence this warning (as `method!`
+  silences the method warning).
+
 - The compiler now suggests possible typos on "unbound identifier" errors.
 - Infix application operators `(|>)` and `(@@)` are added to `Pervasives`.
-- The `-short-path` option changes the way the type-checker prints types to pick a short representation (eg. `string` instead of `StringSet.elt`).
-- This release saw a lot of polishing with sets of changes in many places: the type system for GADTs, compilation speed with `-bin-annot`, ocamlbuild, the test suite, low-level optimizations, etc.
+- The `-short-path` option changes the way the type-checker prints
+  types to pick a short representation (eg. `string` instead of
+  `StringSet.elt`).
+
+- This release saw a lot of polishing with sets of changes in many
+  places: the type system for GADTs, compilation speed with
+  `-bin-annot`, ocamlbuild, the test suite, low-level optimizations,
+  etc.
 |js}
   ; highlights_html = {js|<ul>
-<li>It is now possible to have several variant constructors or record fields of the same name in scope, and type information will be used to disambiguate which one is used -- instead of always using the last one. See <a href="http://www.lexifi.com/blog/type-based-selection-label-and-constructors">this post</a> for a more detailed description of the feature.
+<li>
+<p>It is now possible to have several variant constructors or record
+fields of the same name in scope, and type information will be used
+to disambiguate which one is used -- instead of always using the
+last one. See <a href="http://www.lexifi.com/blog/type-based-selection-label-and-constructors">this
+post</a>
+for a more detailed description of the feature.</p>
 </li>
-<li>New warnings can be activated to warn about identifiers that are used after having been shadowed by an <code>open</code> construct. The <code>open</code> keyword can be written <code>open!</code> to silence this warning (as <code>method!</code> silences the method warning).
+<li>
+<p>New warnings can be activated to warn about identifiers that are
+used after having been shadowed by an <code>open</code> construct. The <code>open</code>
+keyword can be written <code>open!</code> to silence this warning (as <code>method!</code>
+silences the method warning).</p>
 </li>
-<li>The compiler now suggests possible typos on &quot;unbound identifier&quot; errors.
+<li>
+<p>The compiler now suggests possible typos on &quot;unbound identifier&quot; errors.</p>
 </li>
-<li>Infix application operators <code>(|&gt;)</code> and <code>(@@)</code> are added to <code>Pervasives</code>.
+<li>
+<p>Infix application operators <code>(|&gt;)</code> and <code>(@@)</code> are added to <code>Pervasives</code>.</p>
 </li>
-<li>The <code>-short-path</code> option changes the way the type-checker prints types to pick a short representation (eg. <code>string</code> instead of <code>StringSet.elt</code>).
+<li>
+<p>The <code>-short-path</code> option changes the way the type-checker prints
+types to pick a short representation (eg. <code>string</code> instead of
+<code>StringSet.elt</code>).</p>
 </li>
-<li>This release saw a lot of polishing with sets of changes in many places: the type system for GADTs, compilation speed with <code>-bin-annot</code>, ocamlbuild, the test suite, low-level optimizations, etc.
+<li>
+<p>This release saw a lot of polishing with sets of changes in many
+places: the type system for GADTs, compilation speed with
+<code>-bin-annot</code>, ocamlbuild, the test suite, low-level optimizations,
+etc.</p>
 </li>
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.01.0
-
 **License**<br />
  The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
 please read the [license](/docs/license.html) document for more details. A
 BSD-style license is also available for a fee through the [OCaml
 Consortium](/consortium/).
-
-This page describes OCaml version **4.01.0**,
-released on 2013-09-12. Go [here](./) for a list of all releases.
 
 ## What's New
 
@@ -15879,7 +15886,7 @@ Some of the highlights in release 4.01 are:
 For more information, please consult the [comprehensive list of
 changes](4.01/notes/Changes).
 
-## ![](../img/source.gif "")Source distribution
+## Source distribution
 
 -   [Source tarball](https://github.com/ocaml/ocaml/archive/4.01.0.tar.gz)
     (.tar.gz) for compilation under Unix (including Linux and MacOS X)
@@ -15895,7 +15902,7 @@ changes](4.01/notes/Changes).
 The [INSTALL](4.01/notes/INSTALL) file of the
 distribution provides detailed compilation and installation instruction.
 
-## ![](../img/linux.gif "")Precompiled binaries for Linux
+## Precompiled binaries for Linux
 
 -   [Debian packages](http://packages.debian.org/ocaml).
 -   [Fedora
@@ -15904,7 +15911,7 @@ distribution provides detailed compilation and installation instruction.
     packages](http://packages.gentoo.org/packages/?category=dev-lang;name=ocaml).
 
 
-## ![](../img/macos.gif "")Precompiled binaries for MacOS X
+## Precompiled binaries for MacOS X
 
 Binary package compiled on Mac OS 10.7.5 with XCode tools 4.6.3
 (probably not compatible with earlier versions of Mac OS X):
@@ -15912,7 +15919,7 @@ Binary package compiled on Mac OS 10.7.5 with XCode tools 4.6.3
 -   [for 64-bit Intel](https://caml.inria.fr/pub/distrib/ocaml-4.01/ocaml-4.01.0-intel.dmg)
     (4.01.0)
 
-## ![](../img/windows.gif "")Precompiled binaries for Microsoft Windows
+## Precompiled binaries for Microsoft Windows
 
 Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
@@ -15952,7 +15959,7 @@ targets traditionally associated with other languages:
 * The [ocaml-java project](http://ocamljava.x9c.fr/), an OCaml to Java
  compiler (stable)
 
-## ![](../img/doc.gif "")User's manual
+## User's manual
 The user's manual for OCaml can be:
 
 -   [browsed online](4.01/htmlman/index.html),
@@ -15972,15 +15979,12 @@ The user's manual for OCaml can be:
 
 
 |js}
-  ; body_html = {js|<h1>OCaml 4.01.0</h1>
-<p><strong>License</strong><br />
+  ; body_html = {js|<p><strong>License</strong><br />
 The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
 please read the <a href="/docs/license.html">license</a> document for more details. A
 BSD-style license is also available for a fee through the <a href="/consortium/">OCaml
 Consortium</a>.</p>
-<p>This page describes OCaml version <strong>4.01.0</strong>,
-released on 2013-09-12. Go <a href="./">here</a> for a list of all releases.</p>
 <h2>What's New</h2>
 <p>Some of the highlights in release 4.01 are:</p>
 <ul>
@@ -16020,7 +16024,7 @@ etc.</p>
 </ul>
 <p>For more information, please consult the <a href="4.01/notes/Changes">comprehensive list of
 changes</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" />Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.01.0.tar.gz">Source tarball</a>
 (.tar.gz) for compilation under Unix (including Linux and MacOS X)
@@ -16039,7 +16043,7 @@ sources and to all previous public releases.
 </ul>
 <p>The <a href="4.01/notes/INSTALL">INSTALL</a> file of the
 distribution provides detailed compilation and installation instruction.</p>
-<h2><img src="../img/linux.gif" alt="" title="" />Precompiled binaries for Linux</h2>
+<h2>Precompiled binaries for Linux</h2>
 <ul>
 <li><a href="http://packages.debian.org/ocaml">Debian packages</a>.
 </li>
@@ -16050,7 +16054,7 @@ packages</a>.
 packages</a>.
 </li>
 </ul>
-<h2><img src="../img/macos.gif" alt="" title="" />Precompiled binaries for MacOS X</h2>
+<h2>Precompiled binaries for MacOS X</h2>
 <p>Binary package compiled on Mac OS 10.7.5 with XCode tools 4.6.3
 (probably not compatible with earlier versions of Mac OS X):</p>
 <ul>
@@ -16058,7 +16062,7 @@ packages</a>.
 (4.01.0)
 </li>
 </ul>
-<h2><img src="../img/windows.gif" alt="" title="" />Precompiled binaries for Microsoft Windows</h2>
+<h2>Precompiled binaries for Microsoft Windows</h2>
 <p>Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of <a href="/learn/portability.html">portability
 issues</a> or the <a href="4.01/notes/README.win32">Windows release
@@ -16100,7 +16104,7 @@ OCaml to Javascript compiler (stable)
 compiler (stable)
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" />User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.01/htmlman/index.html">browsed online</a>,
@@ -16129,6 +16133,10 @@ of Emacs <code>info</code> files,
   { kind = `Compiler
   ; version = {js|4.00.1|js}
   ; date = {js|2012-10-05|js}
+  ; intro_md = {js|This page describes OCaml version **4.00.1**, released on 2012-10-05.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>4.00.1</strong>, released on 2012-10-05.</p>
+|js}
   ; highlights_md = {js|- The name the language is now officially "OCaml", and this name is
   used consistently in all the documentation and tool outputs.
 - Generalized Algebraic Data Types (GADTs): this is a powerful
@@ -16165,16 +16173,12 @@ vulnerabilities.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 4.00.1
 **License**<br />
  The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
 please read the [license](/docs/license.html) document for more details. A
 BSD-style license is also available for a fee through the [OCaml
 Consortium](/consortium/).
-
-This page describes OCaml version **4.00.1**, released on
-2012-10-05. Go [here](./) for a list of all releases.
 
 ## What's New
 Release 4.00.1 is mostly a bugfix release.
@@ -16199,7 +16203,7 @@ Some of the highlights in release 4.0.0 (July 2012) are:
 For more information, please consult the [comprehensive list of
 changes](4.00/notes/Changes).
 
-## ![](../img/source.gif "")Source distribution
+## Source distribution
 * [Source
  tarball](https://github.com/ocaml/ocaml/archive/4.00.1.tar.gz)
  (.tar.gz) for compilation under Unix (including Linux and MacOS X)
@@ -16214,14 +16218,14 @@ The [INSTALL](4.00/notes/INSTALL)
 file of the distribution provides detailed compilation and installation
 instruction.
 
-## ![](../img/linux.gif "")Precompiled binaries for Linux
+## Precompiled binaries for Linux
 * [Debian packages](http://packages.debian.org/ocaml).
 * [Fedora
  packages](https://admin.fedoraproject.org/pkgdb/package/ocaml/).
 * [Gentoo
  packages](http://packages.gentoo.org/packages/?category=dev-lang;name=ocaml).
 
-## ![](../img/macos.gif "")Precompiled binaries for MacOS X
+## Precompiled binaries for MacOS X
 Binary package compiled on Mac OS 10.7.5 with XCode tools 4.4 (probably
 not compatible with earlier versions of Mac OS X):
 
@@ -16229,7 +16233,7 @@ not compatible with earlier versions of Mac OS X):
  Intel](https://caml.inria.fr/pub/distrib/ocaml-4.00/ocaml-4.00.1-intel.dmg)
  (4.00.1)
 
-## ![](../img/windows.gif "")Precompiled binaries for Microsoft Windows
+## Precompiled binaries for Microsoft Windows
 Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of [portability
 issues](http://caml.inria.fr/ocaml/portability.en.html) or the [Windows
@@ -16267,7 +16271,7 @@ targets traditionally associated with other languages:
 * The [ocamljava project](http://cafesterol.x9c.fr/), an OCaml to Java
  compiler (experimental)
 
-## ![](../img/doc.gif "")User's manual
+## User's manual
 The user's manual for OCaml can be:
 
 * [browsed
@@ -16288,15 +16292,12 @@ The user's manual for OCaml can be:
  of Emacs `info` files.
 
 |js}
-  ; body_html = {js|<h1>OCaml 4.00.1</h1>
-<p><strong>License</strong><br />
+  ; body_html = {js|<p><strong>License</strong><br />
 The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
 please read the <a href="/docs/license.html">license</a> document for more details. A
 BSD-style license is also available for a fee through the <a href="/consortium/">OCaml
 Consortium</a>.</p>
-<p>This page describes OCaml version <strong>4.00.1</strong>, released on
-2012-10-05. Go <a href="./">here</a> for a list of all releases.</p>
 <h2>What's New</h2>
 <p>Release 4.00.1 is mostly a bugfix release.</p>
 <p>Some of the highlights in release 4.0.0 (July 2012) are:</p>
@@ -16324,7 +16325,7 @@ vulnerabilities.
 </ul>
 <p>For more information, please consult the <a href="4.00/notes/Changes">comprehensive list of
 changes</a>.</p>
-<h2><img src="../img/source.gif" alt="" title="" />Source distribution</h2>
+<h2>Source distribution</h2>
 <ul>
 <li><a href="https://github.com/ocaml/ocaml/archive/4.00.1.tar.gz">Source
 tarball</a>
@@ -16342,7 +16343,7 @@ sources and to all previous public releases.
 <p>The <a href="4.00/notes/INSTALL">INSTALL</a>
 file of the distribution provides detailed compilation and installation
 instruction.</p>
-<h2><img src="../img/linux.gif" alt="" title="" />Precompiled binaries for Linux</h2>
+<h2>Precompiled binaries for Linux</h2>
 <ul>
 <li><a href="http://packages.debian.org/ocaml">Debian packages</a>.
 </li>
@@ -16353,7 +16354,7 @@ packages</a>.
 packages</a>.
 </li>
 </ul>
-<h2><img src="../img/macos.gif" alt="" title="" />Precompiled binaries for MacOS X</h2>
+<h2>Precompiled binaries for MacOS X</h2>
 <p>Binary package compiled on Mac OS 10.7.5 with XCode tools 4.4 (probably
 not compatible with earlier versions of Mac OS X):</p>
 <ul>
@@ -16362,7 +16363,7 @@ Intel</a>
 (4.00.1)
 </li>
 </ul>
-<h2><img src="../img/windows.gif" alt="" title="" />Precompiled binaries for Microsoft Windows</h2>
+<h2>Precompiled binaries for Microsoft Windows</h2>
 <p>Four ports of OCaml for Microsoft Windows are currently available. For
 additional information, please consult the list of <a href="http://caml.inria.fr/ocaml/portability.en.html">portability
 issues</a> or the <a href="4.00/notes/README.win32">Windows
@@ -16405,7 +16406,7 @@ OCaml to Javascript compiler (stable)
 compiler (experimental)
 </li>
 </ul>
-<h2><img src="../img/doc.gif" alt="" title="" />User's manual</h2>
+<h2>User's manual</h2>
 <p>The user's manual for OCaml can be:</p>
 <ul>
 <li><a href="4.00/htmlman/index.html">browsed
@@ -16435,6 +16436,10 @@ of Emacs <code>info</code> files.
   { kind = `Compiler
   ; version = {js|3.12.1|js}
   ; date = {js|2011-07-04|js}
+  ; intro_md = {js|This page describes OCaml version **3.12.1**, released on 2011-07-04.
+|js}
+  ; intro_html = {js|<p>This page describes OCaml version <strong>3.12.1</strong>, released on 2011-07-04.</p>
+|js}
   ; highlights_md = {js|- Polymorphic recursion is supported, using explicit type declarations
   on the recursively-defined identifiers.
 - First-class modules: module expressions can be embedded as values of
@@ -16483,16 +16488,12 @@ associated warnings and errors.
 </ul>
 |js}
   ; body_md = {js|
-# OCaml 3.12.1
 **License**<br />
  The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
 please read the [license](/docs/license.html) document for more details. A
 BSD-style license is also available for a fee through the [OCaml
 Consortium](/consortium/).
-
-This page describes OCaml version **3.12.1**, released on
-2011-07-04. Go [here](./) for a list of all releases.
 
 ## What's New
 Some of the highlights in release 3.12 are:
@@ -16599,15 +16600,12 @@ The user's manual for OCaml can be:
  [tarball](3.12/ocaml-3.12-refman.info.tar.gz)
  of Emacs `info` files.
 |js}
-  ; body_html = {js|<h1>OCaml 3.12.1</h1>
-<p><strong>License</strong><br />
+  ; body_html = {js|<p><strong>License</strong><br />
 The OCaml system is open source software: the compiler is distributed
 under the terms of the Q Public License, and its library is under LGPL;
 please read the <a href="/docs/license.html">license</a> document for more details. A
 BSD-style license is also available for a fee through the <a href="/consortium/">OCaml
 Consortium</a>.</p>
-<p>This page describes OCaml version <strong>3.12.1</strong>, released on
-2011-07-04. Go <a href="./">here</a> for a list of all releases.</p>
 <h2>What's New</h2>
 <p>Some of the highlights in release 3.12 are:</p>
 <ul>
