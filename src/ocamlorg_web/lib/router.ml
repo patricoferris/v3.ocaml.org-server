@@ -51,7 +51,7 @@ let page_routes =
     ; Dream.get Url.releases Handler.releases
     ; Dream.get (Url.release ":id") Handler.release
     ; Dream.get Url.events Handler.events
-    ; Dream.get (Url.event ":id") Handler.event
+    ; Dream.get (Url.workshop ":id") Handler.workshop
     ; Dream.get Url.blog Handler.blog
     ; Dream.get Url.opportunities Handler.opportunities
     ; Dream.get (Url.opportunity ":id") Handler.opportunity
@@ -106,7 +106,10 @@ let toplevels_route =
   Dream.scope
     "/toplevels"
     [ Dream_encoding.compress ]
-    [ Dream.get "/**" (Dream.static (Fpath.to_string Ocamlorg.toplevels_path)) ]
+    [ Dream.get
+        "/**"
+        (Dream.static (Fpath.to_string Ocamlorg_package.toplevels_path))
+    ]
 
 let router t =
   Dream.router

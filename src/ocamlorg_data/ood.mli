@@ -88,24 +88,6 @@ module Book : sig
   val get_by_slug : string -> t option
 end
 
-module Event : sig
-  type t =
-    { title : string
-    ; slug : string
-    ; description : string option
-    ; organiser : string option
-    ; url : string
-    ; date : string
-    ; tags : string list
-    ; online : bool
-    ; location : string option
-    }
-
-  val all : t list
-
-  val get_by_slug : string -> t option
-end
-
 module Job : sig
   type t =
     { id : int
@@ -346,6 +328,16 @@ module Opam_user : sig
     }
 
   val all : t list
+
+  val make
+    :  name:string
+    -> ?email:string
+    -> ?github_username:string
+    -> ?avatar:string
+    -> unit
+    -> t
+
+  val find_by_name : string -> t option
 end
 
 module Workshop : sig
@@ -367,6 +359,7 @@ module Workshop : sig
     { name : string
     ; role : role option
     ; affiliation : string option
+    ; picture : string option
     }
 
   type presentation =
@@ -382,9 +375,8 @@ module Workshop : sig
   type t =
     { title : string
     ; slug : string
-    ; location : string option
+    ; location : string
     ; date : string
-    ; online : bool
     ; important_dates : important_date list
     ; presentations : presentation list
     ; program_committee : committee_member list

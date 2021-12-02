@@ -40,8 +40,8 @@ module Info : sig
   type t =
     { synopsis : string
     ; description : string
-    ; authors : Opam_user.t list
-    ; maintainers : Opam_user.t list
+    ; authors : Ood.Opam_user.t list
+    ; maintainers : Ood.Opam_user.t list
     ; license : string
     ; homepage : string list
     ; tags : string list

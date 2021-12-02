@@ -84,12 +84,6 @@ module Book = struct
   let get_by_slug slug = List.find_opt (fun x -> String.equal slug x.slug) all
 end
 
-module Event = struct
-  include Event
-
-  let get_by_slug slug = List.find_opt (fun x -> String.equal slug x.slug) all
-end
-
 module Job = struct
   include Job
 
@@ -161,6 +155,30 @@ end
 
 module Opam_user = struct
   include Opam_user
+
+  let make ~name ?email ?github_username ?avatar () =
+    { name; email; github_username; avatar }
+  
+  let find_by_name s =
+    let pattern = String.lowercase_ascii s in
+    let contains s1 s2 =
+      try
+        let len = String.length s2 in
+        for i = 0 to String.length s1 - len do
+          if String.sub s1 i len = s2 then raise Exit
+        done;
+        false
+      with
+      | Exit ->
+        true
+    in
+    all
+    |> List.find_opt (fun { name; _ } ->
+           if contains pattern (String.lowercase_ascii @@ name) then
+             true
+           else
+             false)
+  
 end
 
 module Watch = struct

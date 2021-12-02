@@ -49,7 +49,7 @@ let release v = "/releases/" ^ v
 
 let events = "/events"
 
-let event v = "/events/" ^ v
+let workshop v = "/workshops/" ^ v
 
 let blog = "/blog"
 

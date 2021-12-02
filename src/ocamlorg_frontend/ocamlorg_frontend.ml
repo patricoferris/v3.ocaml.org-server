@@ -10,9 +10,9 @@ let books books = Books.render books
 
 let community () = Community.render ()
 
-let event () = Event.render ()
+let workshop ~videos workshop = Workshop.render ~videos workshop
 
-let events () = Events.render ()
+let events ~workshops ~meetups = Events.render ~workshops ~meetups
 
 let home () = Home.render ()
 
@@ -37,7 +37,7 @@ let package_documentation () = Package_documentation.render ()
 
 let package_toplevel () = Package_toplevel.render ()
 
-let packages () = Packages.render ()
+let packages packages = Packages.render packages
 
 let packages_search () = Packages_search.render ()
 

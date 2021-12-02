@@ -1,7 +1,7 @@
 (library
  (name ocamlorg_web)
  (libraries
-  ocamlorg
+  ocamlorg_package
   ocamlorg_frontend
   dream
   dream-cli

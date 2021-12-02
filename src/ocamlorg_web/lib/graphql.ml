@@ -1,5 +1,5 @@
-open Ocamlorg
-module Package = Ocamlorg.Package
+module Package = Ocamlorg_package
+module Opam_user = Ood.Opam_user
 
 type package_info =
   { name : string

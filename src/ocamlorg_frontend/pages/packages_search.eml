@@ -1,8 +1,8 @@
 let render () =
 Layout.render
 ~turbo_full_reload:true
-~title:"???"
-~description:"???" @@
+~title:"Caml Packages · Search community packages"
+~description:"Find the package you need to build your application in the thousands of available opam packages." @@
 <div class="bg-white">
     <div class="py-10 lg:py-28">
         <div class="container-fluid">

@@ -1,3 +1,5 @@
+open Import
+
 let not_found _req = Dream.html ~code:404 (Ocamlorg_frontend.not_found ())
 
 let index _req = Dream.html (Ocamlorg_frontend.home ())
@@ -40,7 +42,7 @@ let academic_users req =
     let pattern = String.lowercase_ascii pattern in
     let name_is_s { name; _ } = String.lowercase_ascii name = pattern in
     let name_contains_s { name; _ } =
-      Ocamlorg.Std.String.contains_s (String.lowercase_ascii name) pattern
+      String.contains_s (String.lowercase_ascii name) pattern
     in
     let score user =
       if name_is_s user then
@@ -90,10 +92,10 @@ let releases req =
       String.lowercase_ascii version = pattern
     in
     let version_contains_s { version; _ } =
-      Ocamlorg.Std.String.contains_s (String.lowercase_ascii version) pattern
+      String.contains_s (String.lowercase_ascii version) pattern
     in
     let body_contains_s { body_md; _ } =
-      Ocamlorg.Std.String.contains_s (String.lowercase_ascii body_md) pattern
+      String.contains_s (String.lowercase_ascii body_md) pattern
     in
     let score release =
       if version_is_s release then
@@ -128,9 +130,55 @@ let release req =
   | None ->
     not_found req
 
-let events _req = Dream.html (Ocamlorg_frontend.events ())
+let events _req =
+  let workshops = Ood.Workshop.all in
+  let meetups = Ood.Meetup.all in
+  Dream.html (Ocamlorg_frontend.events ~workshops ~meetups)
 
-let event _req = Dream.html (Ocamlorg_frontend.event ())
+let workshop req =
+  let watch_ocamlorg_embed =
+    let presentations =
+      List.concat_map
+        (fun (w : Ood.Workshop.t) -> w.presentations)
+        Ood.Workshop.all
+    in
+    let rec get_last = function
+      | [] ->
+        ""
+      | [ x ] ->
+        x
+      | _ :: xs ->
+        get_last xs
+    in
+    let watch =
+      List.map
+        (fun (w : Ood.Watch.t) ->
+          String.split_on_char '/' w.embed_path |> get_last |> fun v -> v, w)
+        Ood.Watch.all
+    in
+    let tbl = Hashtbl.create 100 in
+    let add_video (p : Ood.Workshop.presentation) =
+      match p.video with
+      | Some video ->
+        let uuid = String.split_on_char '/' video |> get_last in
+        let find (v, w) = if String.equal uuid v then Some w else None in
+        let w = List.find_map find watch in
+        Option.iter (fun w -> Hashtbl.add tbl p.title w) w
+      | None ->
+        ()
+    in
+    List.iter add_video presentations;
+    tbl
+  in
+  let slug = Dream.param "id" req in
+  match
+    List.find_opt (fun x -> x.Ood.Workshop.slug = slug) Ood.Workshop.all
+  with
+  | Some workshop ->
+    Dream.html
+      (Ocamlorg_frontend.workshop ~videos:watch_ocamlorg_embed workshop)
+  | None ->
+    not_found req
 
 let blog _req = Dream.html (Ocamlorg_frontend.blog ())
 
@@ -140,7 +188,7 @@ let opportunities req =
     let pattern = String.lowercase_ascii pattern in
     let title_is_s { title; _ } = String.lowercase_ascii title = pattern in
     let title_contains_s { title; _ } =
-      Ocamlorg.Std.String.contains_s (String.lowercase_ascii title) pattern
+      String.contains_s (String.lowercase_ascii title) pattern
     in
     let score job =
       if title_is_s job then
@@ -192,15 +240,14 @@ let papers req =
     let pattern = String.lowercase_ascii pattern in
     let title_is_s { title; _ } = String.lowercase_ascii title = pattern in
     let title_contains_s { title; _ } =
-      Ocamlorg.Std.String.contains_s (String.lowercase_ascii title) pattern
+      String.contains_s (String.lowercase_ascii title) pattern
     in
     let abstract_contains_s { abstract; _ } =
-      Ocamlorg.Std.String.contains_s (String.lowercase_ascii abstract) pattern
+      String.contains_s (String.lowercase_ascii abstract) pattern
     in
     let has_tag_s { tags; _ } =
       List.exists
-        (fun tag ->
-          Ocamlorg.Std.String.contains_s (String.lowercase_ascii tag) pattern)
+        (fun tag -> String.contains_s (String.lowercase_ascii tag) pattern)
         tags
     in
     let score paper =
@@ -260,12 +307,12 @@ type package_kind =
   | Package
   | Universe
 
-let packages _req = Dream.html (Ocamlorg_frontend.packages ())
+let packages _req = Dream.html (Ocamlorg_frontend.packages [])
 
 let packages_search t req =
   match Dream.query "q" req with
   | Some search ->
-    let _packages = Ocamlorg.Package.search_package t search in
+    let _packages = Ocamlorg_package.search_package t search in
     Dream.html (Ocamlorg_frontend.packages_search ())
   | None ->
     Dream.redirect req "/packages"
@@ -273,26 +320,26 @@ let packages_search t req =
 let package t req =
   let package = Dream.param "name" req in
   let find_default_version name =
-    Ocamlorg.Package.get_package_latest t name
-    |> Option.map (fun pkg -> Ocamlorg.Package.version pkg)
+    Ocamlorg_package.get_package_latest t name
+    |> Option.map (fun pkg -> Ocamlorg_package.version pkg)
   in
-  let name = Ocamlorg.Package.Name.of_string package in
+  let name = Ocamlorg_package.Name.of_string package in
   let version = find_default_version name in
   match version with
   | Some version ->
     let target =
-      "/p/" ^ package ^ "/" ^ Ocamlorg.Package.Version.to_string version
+      "/p/" ^ package ^ "/" ^ Ocamlorg_package.Version.to_string version
     in
     Dream.redirect req target
   | None ->
     not_found req
 
 let package_versioned t kind req =
-  let name = Ocamlorg.Package.Name.of_string @@ Dream.param "name" req in
+  let name = Ocamlorg_package.Name.of_string @@ Dream.param "name" req in
   let version =
-    Ocamlorg.Package.Version.of_string @@ Dream.param "version" req
+    Ocamlorg_package.Version.of_string @@ Dream.param "version" req
   in
-  let package = Ocamlorg.Package.get_package t name version in
+  let package = Ocamlorg_package.get_package t name version in
   match package with
   | None ->
     not_found req
@@ -306,28 +353,28 @@ let package_versioned t kind req =
         `Universe (Dream.param "hash" req)
     in
     let description =
-      (Ocamlorg.Package.info package).Ocamlorg.Package.Info.description
+      (Ocamlorg_package.info package).Ocamlorg_package.Info.description
     in
     let* _readme =
-      let+ readme_opt = Ocamlorg.Package.readme_file ~kind package in
+      let+ readme_opt = Ocamlorg_package.readme_file ~kind package in
       Option.value
         readme_opt
         ~default:(description |> Omd.of_string |> Omd.to_html)
     in
-    let _license = Ocamlorg.Package.license_file ~kind package in
-    let* _status = Ocamlorg.Package.status ~kind package in
+    let _license = Ocamlorg_package.license_file ~kind package in
+    let* _status = Ocamlorg_package.status ~kind package in
     let _versions =
-      Ocamlorg.Package.get_package_versions t name |> Option.value ~default:[]
+      Ocamlorg_package.get_package_versions t name |> Option.value ~default:[]
     in
-    let _toplevel = Ocamlorg.Package.toplevel package in
+    let _toplevel = Ocamlorg_package.toplevel package in
     Dream.html (Ocamlorg_frontend.package_overview ())
 
 let package_doc t kind req =
-  let name = Ocamlorg.Package.Name.of_string @@ Dream.param "name" req in
+  let name = Ocamlorg_package.Name.of_string @@ Dream.param "name" req in
   let version =
-    Ocamlorg.Package.Version.of_string @@ Dream.param "version" req
+    Ocamlorg_package.Version.of_string @@ Dream.param "version" req
   in
-  let package = Ocamlorg.Package.get_package t name version in
+  let package = Ocamlorg_package.get_package t name version in
   match package with
   | None ->
     not_found req
@@ -350,30 +397,30 @@ let package_doc t kind req =
           Fmt.str "/u/%s/%s/%s/doc/" u
       in
       make
-        (Ocamlorg.Package.Name.to_string name)
-        (Ocamlorg.Package.Version.to_string version)
+        (Ocamlorg_package.Name.to_string name)
+        (Ocamlorg_package.Version.to_string version)
     in
-    let* docs = Ocamlorg.Package.documentation_page ~kind package path in
-    let* _map = Ocamlorg.Package.module_map ~kind package in
-    let* _status = Ocamlorg.Package.status ~kind package in
+    let* docs = Ocamlorg_package.documentation_page ~kind package path in
+    let* _map = Ocamlorg_package.module_map ~kind package in
+    let* _status = Ocamlorg_package.status ~kind package in
     (match docs with
     | None ->
       not_found req
     | Some doc ->
       let _description =
-        (Ocamlorg.Package.info package).Ocamlorg.Package.Info.description
+        (Ocamlorg_package.info package).Ocamlorg_package.Info.description
       in
       let _versions =
-        Ocamlorg.Package.get_package_versions t name |> Option.value ~default:[]
+        Ocamlorg_package.get_package_versions t name |> Option.value ~default:[]
       in
       let canonical_module =
         doc.module_path
         |> List.map (function
-               | Ocamlorg.Package.Documentation.Module s ->
+               | Ocamlorg_package.Documentation.Module s ->
                  s
-               | Ocamlorg.Package.Documentation.ModuleType s ->
+               | Ocamlorg_package.Documentation.ModuleType s ->
                  s
-               | Ocamlorg.Package.Documentation.FunctorArgument (_, s) ->
+               | Ocamlorg_package.Documentation.FunctorArgument (_, s) ->
                  s)
         |> String.concat "."
       in
@@ -382,29 +429,29 @@ let package_doc t kind req =
         | "index.html" ->
           Printf.sprintf
             "Documentation · %s %s · OCaml Packages"
-            (Ocamlorg.Package.Name.to_string name)
-            (Ocamlorg.Package.Version.to_string version)
+            (Ocamlorg_package.Name.to_string name)
+            (Ocamlorg_package.Version.to_string version)
         | _ ->
           Printf.sprintf
             "%s · %s %s · OCaml Packages"
             canonical_module
-            (Ocamlorg.Package.Name.to_string name)
-            (Ocamlorg.Package.Version.to_string version)
+            (Ocamlorg_package.Name.to_string name)
+            (Ocamlorg_package.Version.to_string version)
       in
-      let _toplevel = Ocamlorg.Package.toplevel package in
+      let _toplevel = Ocamlorg_package.toplevel package in
       Dream.html (Ocamlorg_frontend.package_documentation ()))
 
 let package_toplevel t kind req =
-  let name = Ocamlorg.Package.Name.of_string @@ Dream.param "name" req in
+  let name = Ocamlorg_package.Name.of_string @@ Dream.param "name" req in
   let version =
-    Ocamlorg.Package.Version.of_string @@ Dream.param "version" req
+    Ocamlorg_package.Version.of_string @@ Dream.param "version" req
   in
-  let package = Ocamlorg.Package.get_package t name version in
+  let package = Ocamlorg_package.get_package t name version in
   match package with
   | None ->
     not_found req
   | Some package ->
-    let toplevel = Ocamlorg.Package.toplevel package in
+    let toplevel = Ocamlorg_package.toplevel package in
     (match toplevel with
     | None ->
       not_found req
@@ -417,21 +464,21 @@ let package_toplevel t kind req =
           `Universe (Dream.param "hash" req)
       in
       let open Lwt.Syntax in
-      let* _status = Ocamlorg.Package.status ~kind package in
+      let* _status = Ocamlorg_package.status ~kind package in
       let _versions =
-        Ocamlorg.Package.get_package_versions t name |> Option.value ~default:[]
+        Ocamlorg_package.get_package_versions t name |> Option.value ~default:[]
       in
       let _title =
         Printf.sprintf
           "Toplevel · %s %s · OCaml Packages"
-          (Ocamlorg.Package.Name.to_string name)
-          (Ocamlorg.Package.Version.to_string version)
+          (Ocamlorg_package.Name.to_string name)
+          (Ocamlorg_package.Version.to_string version)
       in
       let _description =
         Printf.sprintf
           "%s %s: %s"
-          (Ocamlorg.Package.Name.to_string name)
-          (Ocamlorg.Package.Version.to_string version)
-          (Ocamlorg.Package.info package).Ocamlorg.Package.Info.description
+          (Ocamlorg_package.Name.to_string name)
+          (Ocamlorg_package.Version.to_string version)
+          (Ocamlorg_package.info package).Ocamlorg_package.Info.description
       in
       Dream.html (Ocamlorg_frontend.package_toplevel ()))

@@ -216,47 +216,47 @@ let t =
   ; "/ocamllabs/index.html", "/"
   ; "/about.fr.html", Url.about
   ; ( "/meetings/ocaml/2013/program.html"
-    , Url.event "ocaml-users-and-developers-workshop-2013" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2013" )
   ; ( "/meetings/ocaml/2013/talks/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2013" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2013" )
   ; ( "/meetings/ocaml/2013/call.html"
-    , Url.event "ocaml-users-and-developers-workshop-2013" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2013" )
   ; ( "/meetings/ocaml/2013/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2013" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2013" )
   ; ( "/meetings/ocaml/2014/program.html"
-    , Url.event "ocaml-users-and-developers-workshop-2014" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2014" )
   ; ( "/meetings/ocaml/2014/ocaml2014_10.html"
-    , Url.event "ocaml-users-and-developers-workshop-2014" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2014" )
   ; ( "/meetings/ocaml/2014/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2014" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2014" )
   ; ( "/meetings/ocaml/2014/cfp.html"
-    , Url.event "ocaml-users-and-developers-workshop-2014" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2014" )
   ; ( "/meetings/ocaml/2015/program.html"
-    , Url.event "ocaml-users-and-developers-workshop-2015" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2015" )
   ; ( "/meetings/ocaml/2015/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2015" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2015" )
   ; ( "/meetings/ocaml/2015/cfp.html"
-    , Url.event "ocaml-users-and-developers-workshop-2015" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2015" )
   ; ( "/meetings/ocaml/2012/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2012" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2012" )
   ; ( "/meetings/ocaml/2008/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2008" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2008" )
   ; ( "/meetings/ocaml/2009/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2009" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2009" )
   ; ( "/meetings/ocaml/2017/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2017" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2017" )
   ; ( "/meetings/ocaml/2010/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2010" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2010" )
   ; ( "/meetings/ocaml/2019/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2019" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2019" )
   ; ( "/meetings/ocaml/2020/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2020" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2020" )
   ; ( "/meetings/ocaml/2018/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2018" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2018" )
   ; ( "/meetings/ocaml/2011/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2011" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2011" )
   ; ( "/meetings/ocaml/2016/index.html"
-    , Url.event "ocaml-users-and-developers-workshop-2016" )
+    , Url.workshop "ocaml-users-and-developers-workshop-2016" )
   ; "/meetings/index.html", Url.events
   ; "/meetings/index.fr.html", Url.events
   ; "/community/planet/index.html", Url.community

@@ -1,6 +1,6 @@
 (library
  (name ocamlorg_frontend)
- (libraries dream ood))
+ (libraries dream ood timedesc))
 
 (include_subdirs unqualified)
 
@@ -55,8 +55,8 @@
   (action
    (run %{bin:dream_eml} %{deps} --workspace %{workspace_root})))
  (rule
-  (targets event.ml)
-  (deps event.eml)
+  (targets workshop.ml)
+  (deps workshop.eml)
   (action
    (run %{bin:dream_eml} %{deps} --workspace %{workspace_root})))
  (rule

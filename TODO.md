@@ -160,15 +160,16 @@
 ## Community
 
 - Event
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [X] Static content is reviewed
+  - [ ] Ask community to add their picture in the data
 
 - Events
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
   - [ ] Static content is reviewed
 
 - Blog
