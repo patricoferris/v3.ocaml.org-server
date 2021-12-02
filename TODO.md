@@ -152,9 +152,11 @@
   - [ ] Static content is reviewed
 
 - Packages search
-  - [ ] Initial integration
+  - [X] Initial integration
   - [ ] All links are working
-  - [ ] Content is dynamic
+    - [X] Main links work
+    - [ ] Tags, authors etc. link to nowhere
+  - [X] Content is dynamic
   - [ ] Static content is reviewed
 
 ## Community

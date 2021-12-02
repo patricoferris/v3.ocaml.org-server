@@ -68,9 +68,11 @@ inner =
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <input type="search"
-            class="w-60 outline-none pl-7 bg-transparent border-b-2 border-transparent focus:border-primary-600 text-body-600 h-12 placeholder-body-400"
-            placeholder="Search OCaml packages">
+          <form action="/packages/search" method="GET"> 
+            <input type="search" id="q" name="q"
+              class="w-60 outline-none pl-7 bg-transparent border-b-2 border-transparent focus:border-primary-600 text-body-600 h-12 placeholder-body-400"
+              placeholder="Search packages">
+          </form>
         </div>
         <div class="hidden lg:flex">
           <a href="<%s Url.getting_started %>"><button class="btn btn-sm">Get started</button></a>

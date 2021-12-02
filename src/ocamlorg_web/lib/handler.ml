@@ -309,11 +309,27 @@ type package_kind =
 
 let packages _req = Dream.html (Ocamlorg_frontend.packages [])
 
+let package_to_search_result (p : Ocamlorg_package.t)
+    : Ocamlorg_frontend.package_search_result
+  =
+  let name = Ocamlorg_package.(Name.to_string @@ name p) in
+  let version = Ocamlorg_package.(Version.to_string @@ version p) in
+  let info = Ocamlorg_package.info p in
+  { name
+  ; version
+  ; description = info.synopsis
+  ; tags = info.tags
+  ; authors = List.map (fun t -> t.Ood.Opam_user.name) info.authors
+  ; license = info.license
+  }
+
 let packages_search t req =
   match Dream.query "q" req with
   | Some search ->
-    let _packages = Ocamlorg_package.search_package t search in
-    Dream.html (Ocamlorg_frontend.packages_search ())
+    let packages = Ocamlorg_package.search_package t search in
+    let total = List.length packages in
+    let results = List.map package_to_search_result packages in
+    Dream.html (Ocamlorg_frontend.packages_search ~total results)
   | None ->
     Dream.redirect req "/packages"
 

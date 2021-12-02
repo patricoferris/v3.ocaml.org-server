@@ -39,7 +39,9 @@ let package_toplevel () = Package_toplevel.render ()
 
 let packages packages = Packages.render packages
 
-let packages_search () = Packages_search.render ()
+type package_search_result = Packages_search.t
+
+let packages_search ~total packages = Packages_search.render ~total packages
 
 let papers ?search ~recommended_papers papers =
   Papers.render ?search ~recommended_papers papers
