@@ -14,6 +14,7 @@
 @import 'other/doc.css';
 @import 'other/syntax.css';
 @import 'other/toplevel.css';
+@import 'other/modifiers.css';
 
 html {
     scroll-behavior: smooth;
