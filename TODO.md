@@ -134,10 +134,13 @@
   - [ ] Static content is reviewed
 
 - Package overview
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [X] Static content is reviewed
+  - [ ] Need to handle license and changelog
+  - [ ] Tags go over the meta div
+  - [ ] Dependency list is too long, need to add a max-w (same for rev deps)
 
 - Package documentation
   - [ ] Initial integration
@@ -157,7 +160,7 @@
     - [X] Main links work
     - [ ] Tags, authors etc. link to nowhere
   - [X] Content is dynamic
-  - [ ] Static content is reviewed
+  - [X] Static content is reviewed
 
 ## Community
 

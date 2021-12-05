@@ -309,26 +309,46 @@ type package_kind =
 
 let packages _req = Dream.html (Ocamlorg_frontend.packages [])
 
-let package_to_search_result (p : Ocamlorg_package.t)
-    : Ocamlorg_frontend.package_search_result
+let package_meta ~kind state (package : Ocamlorg_package.t)
+    : Ocamlorg_frontend.package Lwt.t
   =
-  let name = Ocamlorg_package.(Name.to_string @@ name p) in
-  let version = Ocamlorg_package.(Version.to_string @@ version p) in
-  let info = Ocamlorg_package.info p in
-  { name
-  ; version
-  ; description = info.synopsis
-  ; tags = info.tags
-  ; authors = List.map (fun t -> t.Ood.Opam_user.name) info.authors
-  ; license = info.license
-  }
+  let open Lwt.Syntax in
+  let name = Ocamlorg_package.(Name.to_string @@ name package) in
+  let version = Ocamlorg_package.(Version.to_string @@ version package) in
+  let info = Ocamlorg_package.info package in
+  let versions =
+    Ocamlorg_package.get_package_versions state (Ocamlorg_package.name package)
+    |> Option.value ~default:[]
+    |> List.sort Ocamlorg_package.Version.compare
+    |> List.map Ocamlorg_package.Version.to_string
+    |> List.rev
+  in
+  let* documentation_status =
+    Ocamlorg_package.documentation_status ~kind package
+  in
+  let+ toplevel_status = Ocamlorg_package.toplevel_status ~kind package in
+  Ocamlorg_frontend.
+    { name
+    ; version
+    ; versions
+    ; description = info.synopsis
+    ; tags = info.tags
+    ; authors = info.authors
+    ; maintainers = info.maintainers
+    ; license = info.license
+    ; documentation_status
+    ; toplevel_status
+    }
 
 let packages_search t req =
   match Dream.query "q" req with
   | Some search ->
+    let open Lwt.Syntax in
     let packages = Ocamlorg_package.search_package t search in
     let total = List.length packages in
-    let results = List.map package_to_search_result packages in
+    let* results =
+      Lwt.all (List.map (package_meta ~kind:`Package t) packages)
+    in
     Dream.html (Ocamlorg_frontend.packages_search ~total results)
   | None ->
     Dream.redirect req "/packages"
@@ -371,19 +391,41 @@ let package_versioned t kind req =
     let description =
       (Ocamlorg_package.info package).Ocamlorg_package.Info.description
     in
-    let* _readme =
+    let* readme =
       let+ readme_opt = Ocamlorg_package.readme_file ~kind package in
       Option.value
         readme_opt
         ~default:(description |> Omd.of_string |> Omd.to_html)
     in
     let _license = Ocamlorg_package.license_file ~kind package in
-    let* _status = Ocamlorg_package.status ~kind package in
-    let _versions =
-      Ocamlorg_package.get_package_versions t name |> Option.value ~default:[]
+    let* package_meta = package_meta ~kind t package in
+    let package_info = Ocamlorg_package.info package in
+    let rev_dependencies =
+      package_info.Ocamlorg_package.Info.rev_deps
+      |> List.map (fun (name, x, version) ->
+             ( Ocamlorg_package.Name.to_string name
+             , x
+             , Ocamlorg_package.Version.to_string version ))
     in
-    let _toplevel = Ocamlorg_package.toplevel package in
-    Dream.html (Ocamlorg_frontend.package_overview ())
+    let dependencies =
+      package_info.Ocamlorg_package.Info.dependencies
+      |> List.map (fun (name, x) -> Ocamlorg_package.Name.to_string name, x)
+    in
+    let homepages = package_info.Ocamlorg_package.Info.homepage in
+    let source =
+      Option.map
+        (fun url ->
+          url.Ocamlorg_package.Info.uri, url.Ocamlorg_package.Info.checksum)
+        package_info.Ocamlorg_package.Info.url
+    in
+    Dream.html
+      (Ocamlorg_frontend.package_overview
+         ~readme
+         ~dependencies
+         ~rev_dependencies
+         ~homepages
+         ~source
+         package_meta)
 
 let package_doc t kind req =
   let name = Ocamlorg_package.Name.of_string @@ Dream.param "name" req in
@@ -418,7 +460,6 @@ let package_doc t kind req =
     in
     let* docs = Ocamlorg_package.documentation_page ~kind package path in
     let* _map = Ocamlorg_package.module_map ~kind package in
-    let* _status = Ocamlorg_package.status ~kind package in
     (match docs with
     | None ->
       not_found req
@@ -454,7 +495,6 @@ let package_doc t kind req =
             (Ocamlorg_package.Name.to_string name)
             (Ocamlorg_package.Version.to_string version)
       in
-      let _toplevel = Ocamlorg_package.toplevel package in
       Dream.html (Ocamlorg_frontend.package_documentation ()))
 
 let package_toplevel t kind req =
@@ -472,17 +512,12 @@ let package_toplevel t kind req =
     | None ->
       not_found req
     | Some _toplevel ->
-      let kind =
+      let _kind =
         match kind with
         | Package ->
           `Package
         | Universe ->
           `Universe (Dream.param "hash" req)
-      in
-      let open Lwt.Syntax in
-      let* _status = Ocamlorg_package.status ~kind package in
-      let _versions =
-        Ocamlorg_package.get_package_versions t name |> Option.value ~default:[]
       in
       let _title =
         Printf.sprintf

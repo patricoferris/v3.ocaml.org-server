@@ -106,11 +106,17 @@ val license_file
   -> string option Lwt.t
 (** Get the license of a package *)
 
-val status
+val documentation_status
   :  kind:[< `Package | `Universe of string ]
   -> t
   -> [ `Success | `Failure | `Unknown ] Lwt.t
-(** Get the build status of a package *)
+(** Get the build status of the documentation of a package *)
+
+val toplevel_status
+  :  kind:[< `Package | `Universe of string ]
+  -> t
+  -> [ `Success | `Failure | `Unknown ] Lwt.t
+(** Get the build status of the toplevel of a package *)
 
 val module_map
   :  kind:[< `Package | `Universe of string ]

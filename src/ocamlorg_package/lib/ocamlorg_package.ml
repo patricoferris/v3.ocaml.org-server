@@ -434,6 +434,19 @@ let toplevel t =
   else
     None
 
+let toplevel_status ~kind:_ t =
+  (* Placeholder until we have the toplevels from the docs CI. We should replace
+     this function with something equivalent to [documentation_status] *)
+  let name = Name.to_string t.name in
+  let version = Version.to_string t.version in
+  let path =
+    Fpath.(to_string (Config.toplevels_path / (name ^ "-" ^ version ^ ".js")))
+  in
+  if Sys.file_exists path then
+    Lwt.return `Success
+  else
+    Lwt.return `Failure
+
 module Documentation = struct
   type toc =
     { title : string
@@ -572,7 +585,7 @@ let license_file ~kind t =
   let+ doc = documentation_page ~kind t "LICENSE.md.html" in
   match doc with None -> None | Some { content; _ } -> Some content
 
-let status ~kind t =
+let documentation_status ~kind t =
   let open Lwt.Syntax in
   let root =
     package_path ~kind (Name.to_string t.name) (Version.to_string t.version)

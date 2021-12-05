@@ -20,7 +20,7 @@ let package_toplevel v version = "/p/" ^ v ^ "/" ^ version ^ "/toplevel"
 let package_toplevel_with_hash hash v version =
   "/u/" ^ hash ^ "/" ^ v ^ "/" ^ version ^ "/toplevel"
 
-let package_doc v version = "/p/" ^ v ^ "/" ^ version ^ "/doc/" ^ "**"
+let package_doc v version page = "/p/" ^ v ^ "/" ^ version ^ "/doc/" ^ page
 
 let package_doc_with_hash hash v version =
   "/u/" ^ hash ^ "/" ^ v ^ "/" ^ version ^ "/doc/" ^ "**"

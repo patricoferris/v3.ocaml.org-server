@@ -1,5 +1,18 @@
 module Url = Url
 
+type package = Package_intf.meta =
+  { name : string
+  ; description : string
+  ; license : string
+  ; version : string
+  ; versions : string list
+  ; tags : string list
+  ; authors : Ood.Opam_user.t list
+  ; maintainers : Ood.Opam_user.t list
+  ; documentation_status : [ `Success | `Failure | `Unknown ]
+  ; toplevel_status : [ `Success | `Failure | `Unknown ]
+  }
+
 let about () = About.render ()
 
 let academic_users users = Academic_users.render users
@@ -31,15 +44,22 @@ let opportunities ?search ?country opportunities =
 
 let opportunity opportunity = Opportunity.render opportunity
 
-let package_overview () = Package_overview.render ()
+let package_overview
+    ~readme ~dependencies ~rev_dependencies ~homepages ~source package
+  =
+  Package_overview.render
+    ~readme
+    ~dependencies
+    ~rev_dependencies
+    ~homepages
+    ~source
+    package
 
 let package_documentation () = Package_documentation.render ()
 
 let package_toplevel () = Package_toplevel.render ()
 
 let packages packages = Packages.render packages
-
-type package_search_result = Packages_search.t
 
 let packages_search ~total packages = Packages_search.render ~total packages
 
