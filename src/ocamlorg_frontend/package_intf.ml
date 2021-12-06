@@ -7,6 +7,4 @@ type meta =
   ; tags : string list
   ; authors : Ood.Opam_user.t list
   ; maintainers : Ood.Opam_user.t list
-  ; documentation_status : [ `Success | `Failure | `Unknown ]
-  ; toplevel_status : [ `Success | `Failure | `Unknown ]
   }

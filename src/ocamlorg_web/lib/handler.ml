@@ -309,10 +309,9 @@ type package_kind =
 
 let packages _req = Dream.html (Ocamlorg_frontend.packages [])
 
-let package_meta ~kind state (package : Ocamlorg_package.t)
-    : Ocamlorg_frontend.package Lwt.t
+let package_meta state (package : Ocamlorg_package.t)
+    : Ocamlorg_frontend.package
   =
-  let open Lwt.Syntax in
   let name = Ocamlorg_package.(Name.to_string @@ name package) in
   let version = Ocamlorg_package.(Version.to_string @@ version package) in
   let info = Ocamlorg_package.info package in
@@ -323,10 +322,6 @@ let package_meta ~kind state (package : Ocamlorg_package.t)
     |> List.map Ocamlorg_package.Version.to_string
     |> List.rev
   in
-  let* documentation_status =
-    Ocamlorg_package.documentation_status ~kind package
-  in
-  let+ toplevel_status = Ocamlorg_package.toplevel_status ~kind package in
   Ocamlorg_frontend.
     { name
     ; version
@@ -336,19 +331,14 @@ let package_meta ~kind state (package : Ocamlorg_package.t)
     ; authors = info.authors
     ; maintainers = info.maintainers
     ; license = info.license
-    ; documentation_status
-    ; toplevel_status
     }
 
 let packages_search t req =
   match Dream.query "q" req with
   | Some search ->
-    let open Lwt.Syntax in
     let packages = Ocamlorg_package.search_package t search in
     let total = List.length packages in
-    let* results =
-      Lwt.all (List.map (package_meta ~kind:`Package t) packages)
-    in
+    let results = List.map (package_meta t) packages in
     Dream.html (Ocamlorg_frontend.packages_search ~total results)
   | None ->
     Dream.redirect req "/packages"
@@ -398,7 +388,7 @@ let package_versioned t kind req =
         ~default:(description |> Omd.of_string |> Omd.to_html)
     in
     let _license = Ocamlorg_package.license_file ~kind package in
-    let* package_meta = package_meta ~kind t package in
+    let package_meta = package_meta t package in
     let package_info = Ocamlorg_package.info package in
     let rev_dependencies =
       package_info.Ocamlorg_package.Info.rev_deps
@@ -418,8 +408,14 @@ let package_versioned t kind req =
           url.Ocamlorg_package.Info.uri, url.Ocamlorg_package.Info.checksum)
         package_info.Ocamlorg_package.Info.url
     in
+    let* documentation_status =
+      Ocamlorg_package.documentation_status ~kind package
+    in
+    let* toplevel_status = Ocamlorg_package.toplevel_status ~kind package in
     Dream.html
       (Ocamlorg_frontend.package_overview
+         ~documentation_status
+         ~toplevel_status
          ~readme
          ~dependencies
          ~rev_dependencies
