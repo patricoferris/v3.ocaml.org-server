@@ -62,10 +62,10 @@ Package_layout.render
             <% ); %>
         </div>
         <div class="mt-4">
-            <div class="flex mt-5 space-x-3">
+            <div class="flex mt-5 flex-wrap">
                 <% package.tags |> List.iter (fun tag -> %>
                 <a href=""
-                    class="hover:underline px-2 py-1 text-body-400 font-medium bg-gray-100 rounded">
+                    class="hover:underline px-2 py-1 text-body-400 font-medium bg-gray-100 rounded mr-3 mt-3">
                     <%s tag %>
                 </a>
                 <% ); %>
@@ -170,7 +170,7 @@ Package_layout.render
         </div>
         <% ; %>
         <div class="font-semibold mt-8 mb-3 text-base text-body-400">Dependencies</div>
-        <div class="flex flex-col space-y-3">
+        <div class="flex flex-col space-y-3 max-h-96 overflow-auto">
             <% dependencies |> List.iter (fun (name, cstr) -> %>
             <div class="flex items-center space-x-3">
                 <a href="<%s Url.package name %>" class="text-primary-600 hover:underline">
@@ -186,7 +186,7 @@ Package_layout.render
             <% ); %>
         </div>
         <div class="font-semibold mt-8 mb-3 text-base text-body-400">Reverse dependencies</div>
-        <div class="flex flex-col space-y-3">
+        <div class="flex flex-col space-y-3 max-h-96 overflow-auto">
             <% rev_dependencies |> List.iter (fun (name, cstr, version) -> %>
             <div class="flex items-center space-x-3">
                 <a href="<%s Url.package_with_version name version %>" class="text-primary-600 hover:underline">

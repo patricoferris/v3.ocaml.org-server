@@ -20,7 +20,7 @@ the community and learn more about how they use OCaml." @@
 <div class="bg-white py-0 md:py-20 ">
     <div class="container-fluid">
         <div
-            class="divide-y grid grid-cols-1 md:grid-cols-2 grid-logos lg:grid-cols-4 lg:divide-x lg:divide-y text-center mb-10">
+            class="grid-logos">
             <% users |> List.iter (fun (item : Ood.Industrial_user.t) ->
             let logo = match item.logo with | Some x -> "/media/" ^ x | None -> "" in %>
             <a href="<%s item.url %>" target="_blank"

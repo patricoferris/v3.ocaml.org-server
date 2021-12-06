@@ -68,7 +68,7 @@ inner =
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <form action="/packages/search" method="GET"> 
+          <form action="/packages/search" method="GET">
             <input type="search" id="q" name="q"
               class="w-60 outline-none pl-7 bg-transparent border-b-2 border-transparent focus:border-primary-600 text-body-600 h-12 placeholder-body-400"
               placeholder="Search packages">
@@ -94,7 +94,7 @@ inner =
 
     <div class="bg-black fixed w-full h-full left-0 top-0 opacity-60 z-40" x-show='open'></div>
 
-    <div class="z-50 h-full absolute right-0 top-0 max-w-full w-96 bg-white shadow-lg" x-show="open"
+    <div class="z-50 h-full fixed right-0 top-0 max-w-full w-96 bg-white shadow-lg" x-show="open"
       @click.away="open = false" x-transition:enter="transition duration-200 transform ease-out"
       x-transition:enter-start="translate-x-full" x-transition:leave="transition duration-100 transform ease-in"
       x-transition:leave-end="translate-x-full">
