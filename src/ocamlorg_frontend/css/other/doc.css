@@ -27,18 +27,24 @@ div.odoc a.anchor {
   left: 0px;
   opacity: 0;
   text-decoration: none;
-  margin-left: -1em;
-  padding-right: 0.5em;
+  color: rgb(156 163 175);
+  margin-left: -0.75em;
   box-shadow: none;
-  color: rgb(161, 161, 170);
 }
 
 div.odoc *:hover > a.anchor {
   opacity: 1;
 }
 
+div.odoc *:hover > a.anchor:hover {
+  color: rgb(75 85 99);
+}
+
 div.odoc a.anchor::after {
   content: "#";
+  padding-right: 1em;
+  padding-left: 1em;
+  font-size: large;
 }
 
 div.odoc div.spec table {
@@ -105,4 +111,8 @@ div.odoc-include details:after {
 
 div.odoc-include summary:hover {
   background-color: rgba(228, 231, 235, 1);
+}
+
+div.odoc span[class*='keyword'] {
+	color: rgba(17, 24, 39, 1);
 }

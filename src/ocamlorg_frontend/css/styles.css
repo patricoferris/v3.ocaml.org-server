@@ -119,10 +119,6 @@ a:focus-visible, select:focus-visible, button:focus-visible {
     @apply outline-primary;
 }
 
-.types-container ul > li > *:first-child,ul > li > *:last-child {
-    margin:0;
-}
-
 .top-level-container .prose ul li::before {
     display: none;
 }

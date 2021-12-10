@@ -72,7 +72,7 @@
   - [X] All links are working
   - [X] Content is dynamic
   - [ ] Static content is reviewed
-  - [ ] Issues reported to Asaad are fixed
+  - [X] Issues reported to Asaad are fixed
 
 - Releases
   - [X] Initial integration
@@ -95,8 +95,8 @@
   - [X] All links are working
   - [X] Content is dynamic
   - [ ] Static content is reviewed
-  - [ ] Layout is broken by paper abstract
-  - [ ] Why does the menu scroll when the content is longer than the menu
+  - [X] Layout is broken by paper abstract
+  - [X] Why does the menu scroll when the content is longer than the menu
   - [ ] Mobile menu can't be used if scolling
 
 - Tutorial
@@ -143,10 +143,14 @@
   - [ ] Dependency list is too long, need to add a max-w (same for rev deps)
 
 - Package documentation
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [X] Static content is reviewed
+  - [ ] Layout is broken on mobile
+  - [ ] Make the menus sticky
+  - [ ] Review the navbar menu, I find it very confusing to use.
+  - [ ] Icon for mobile menu is floating (regression)
 
 - Package toplevel
   - [ ] Initial integration
