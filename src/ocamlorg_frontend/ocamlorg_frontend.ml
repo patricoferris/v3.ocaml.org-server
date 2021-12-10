@@ -56,8 +56,14 @@ let package_overview
     package
 
 let package_documentation
-    ~documentation_status ~toplevel_status ~title ~path ~toc ~maptoc
-    ~content package
+    ~documentation_status
+    ~toplevel_status
+    ~title
+    ~path
+    ~toc
+    ~maptoc
+    ~content
+    package
   =
   Package_documentation.render
     ~documentation_status
@@ -69,7 +75,14 @@ let package_documentation
     ~content
     package
 
-let package_toplevel () = Package_toplevel.render ()
+let package_toplevel
+    ~documentation_status ~toplevel_status ~toplevel_url package
+  =
+  Package_toplevel.render
+    ~documentation_status
+    ~toplevel_status
+    ~toplevel_url
+    package
 
 let packages packages = Packages.render packages
 

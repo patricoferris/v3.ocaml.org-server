@@ -22,8 +22,8 @@ let package_toplevel_with_hash hash v version =
 
 let package_doc v version page = "/p/" ^ v ^ "/" ^ version ^ "/doc/" ^ page
 
-let package_doc_with_hash hash v version =
-  "/u/" ^ hash ^ "/" ^ v ^ "/" ^ version ^ "/doc/" ^ "**"
+let package_doc_with_hash hash v version page =
+  "/u/" ^ hash ^ "/" ^ v ^ "/" ^ version ^ "/doc/" ^ page
 
 let community = "/community"
 

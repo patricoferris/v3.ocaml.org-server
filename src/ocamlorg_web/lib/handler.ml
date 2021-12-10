@@ -597,25 +597,23 @@ let package_toplevel t kind req =
     (match toplevel with
     | None ->
       not_found req
-    | Some _toplevel ->
-      let _kind =
+    | Some toplevel_url ->
+      let open Lwt.Syntax in
+      let kind =
         match kind with
         | Package ->
           `Package
         | Universe ->
           `Universe (Dream.param "hash" req)
       in
-      let _title =
-        Printf.sprintf
-          "Toplevel · %s %s · OCaml Packages"
-          (Ocamlorg_package.Name.to_string name)
-          (Ocamlorg_package.Version.to_string version)
+      let* documentation_status =
+        Ocamlorg_package.documentation_status ~kind package
       in
-      let _description =
-        Printf.sprintf
-          "%s %s: %s"
-          (Ocamlorg_package.Name.to_string name)
-          (Ocamlorg_package.Version.to_string version)
-          (Ocamlorg_package.info package).Ocamlorg_package.Info.description
-      in
-      Dream.html (Ocamlorg_frontend.package_toplevel ()))
+      let* toplevel_status = Ocamlorg_package.toplevel_status ~kind package in
+      let package_meta = package_meta t package in
+      Dream.html
+        (Ocamlorg_frontend.package_toplevel
+           ~documentation_status
+           ~toplevel_status
+           ~toplevel_url
+           package_meta))

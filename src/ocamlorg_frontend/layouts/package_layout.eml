@@ -73,23 +73,18 @@ Layout.render
               <% ); %>
             </button>
           </a>
+          <% (match toplevel_status with 
+            | `Failure -> ()
+            | `Unknown -> ()
+            | `Success -> %>
           <a href="<%s Url.package_toplevel package.name package.version %>">
-            <button
-            class="<%s if tab = Toplevel then current_tab_class else tab_class %>">
+            <button class="<%s if tab = Toplevel then current_tab_class else tab_class %>">
               Top level
-              <% (match toplevel_status with 
-                 | `Failure -> %>
-                 <span class="bg-red-500 ml-2 absolute top-2 p-1 rounded-full inline-block">
-                 </span>
-              <% | `Success -> %>
-                <span class="bg-green-500 ml-2 absolute top-2 p-1 rounded-full inline-block">
-                </span>
-              <% | `Unknown -> %>
-                <span class="bg-orange-300 ml-2 absolute top-2 p-1 rounded-full inline-block">
-                </span>
-              <% ); %>
+              <span class="bg-green-500 ml-2 absolute top-2 p-1 rounded-full inline-block">
+              </span>
             </button>
           </a>
+          <% ); %>
         </div>
       </div>
       <div class="py-12">

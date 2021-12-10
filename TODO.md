@@ -153,10 +153,11 @@
   - [ ] Icon for mobile menu is floating (regression)
 
 - Package toplevel
-  - [ ] Initial integration
-  - [ ] All links are working
-  - [ ] Content is dynamic
-  - [ ] Static content is reviewed
+  - [X] Initial integration
+  - [X] All links are working
+  - [X] Content is dynamic
+  - [X] Static content is reviewed
+  - [ ] Replace toplevel with the same as design as the homepage
 
 - Packages search
   - [X] Initial integration

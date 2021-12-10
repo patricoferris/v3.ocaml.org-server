@@ -69,28 +69,27 @@ let package_route t =
   Dream.scope
     ""
     [ Middleware.set_locale ]
-    [ Dream.get "/packages" Handler.packages
-    ; Dream.get "/packages/" Handler.packages
-    ; Dream.get "/packages/search" (Handler.packages_search t)
-    ; Dream.get "/p/:name" (Handler.package t)
-    ; Dream.get "/u/:hash/:name" (Handler.package t)
+    [ Dream.get Url.packages Handler.packages
+    ; Dream.get Url.packages_search (Handler.packages_search t)
+    ; Dream.get (Url.package ":name") (Handler.package t)
+    ; Dream.get (Url.package_with_univ ":hash" ":name") (Handler.package t)
     ; Dream.get
-        "/p/:name/:version"
+        (Url.package_with_version ":name" ":version")
         ((Handler.package_versioned t) Handler.Package)
     ; Dream.get
-        "/u/:hash/:name/:version"
+        (Url.package_with_hash_with_version ":hash" ":name" ":version")
         ((Handler.package_versioned t) Handler.Universe)
     ; Dream.get
-        "/p/:name/:version/top"
+        (Url.package_toplevel ":name" ":version")
         ((Handler.package_toplevel t) Handler.Package)
     ; Dream.get
-        "/u/:hash/:name/:version/top"
+        (Url.package_toplevel_with_hash ":hash" ":name" ":version")
         ((Handler.package_toplevel t) Handler.Universe)
     ; Dream.get
-        "/p/:name/:version/doc/**"
+        (Url.package_doc ":name" ":version" "**")
         ((Handler.package_doc t) Handler.Package)
     ; Dream.get
-        "/u/:hash/:name/:version/doc/**"
+        (Url.package_doc_with_hash ":hash" ":name" ":version" "**")
         ((Handler.package_doc t) Handler.Universe)
     ]
 
