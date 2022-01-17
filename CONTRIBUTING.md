@@ -1,5 +1,7 @@
 # Contributing to OCaml.org
 
+Welcome to the v3.ocaml.org repository! Thank you for taking the time to read our contributing guide and hopefully help improve v3.ocaml.org.
+
 This repository contains the data and source code for the ocaml.org site in a structured format.
 
 Contributions are very welcome whether that be:
@@ -113,7 +115,26 @@ The following snippet describes OCaml.org's repository structure.
 |   `.PO` files for static content translation.
 │
 ├── src/
-|   The source code of ocaml.org.
+│   ├── gettext
+|   |   The source code for translations.
+|   |
+│   ├── hilite
+|   |   A small library we use to do OCaml code highlighting at build time.
+|   |
+│   ├── ocamlorg_data
+|   |   The result of compiling all of the information in `/data` into OCaml modules.
+|   |
+│   ├── ocamlorg_frontend
+|   |   All of the frontend code primarily using .eml files (OCaml + HTML).
+|   |
+│   ├── ocamlorg_package
+|   |   The library for constructing opam-repository statistics and information (e.g. rev deps).
+|   |
+│   ├── ocamlorg_toplevel
+|   |   All of the js_of_ocaml toplevel code including UI and background workers.
+|   |
+│   └── ocamlorg_web
+|       The main entry-point of the server.
 │
 ├── tool/
 |   Sources for development tools such as the `ocamlorg_data` code generator.
