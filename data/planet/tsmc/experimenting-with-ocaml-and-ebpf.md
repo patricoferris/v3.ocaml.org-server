@@ -1,0 +1,125 @@
+---
+title: Experimenting with OCaml and eBPF
+description:
+url: https://lambdafoo.com/posts/2025-02-15-ocaml-ebpf-usdt.html
+date: 2025-02-15T00:00:00-00:00
+preview_image:
+authors:
+- Tim McGilchrist
+source:
+ignore:
+---
+
+
+        <div class="post">
+  <h1 class="post-title">Experimenting with OCaml and eBPF</h1>
+  <span class="post-date">February 15, 2025</span><p>Building on top of the excellent book <em>BPF Performance Tools</em> by Brendan Gregg. How can we apply the techniques from Chapter 12 Languages to OCaml?</p>
+<p>First OCaml is roughly equivalent to C, it's a compiled language with a runtime written in C. It supports frame pointers using the <code>--enable-frame-pointers</code> configuration option on x86_64, with ARM64 support in OCaml 5.4. Eventually the code we're interested in is C or looks roughly like C but with a different calling convention.</p>
+<p>For tracing into the Linux kernel, you'll need a distribution that is compiled with frame pointers like Ubuntu 24.04 and we can reuse the kernel's own symbol table. There are some exceptions for inlined functions and some blacklisted functions that aren't safe to trace. However for the pieces I've looked at like memory allocation and virtual memory, it is fine.</p>
+<p>For the OCaml runtime written in C, it can be configured to include symbols, frame pointers and debuginfo for the portions written in C. The sections of the runtime written in assembly have symbols and frame pointers. For actual OCaml code it will have symbols and frame pointers, with limited debuginfo. Demo time!</p>
+<h1><a href="https://lambdafoo.com/rss.xml#ocaml-function-tracing" class="anchor" aria-hidden="true"></a>OCaml Function Tracing</h1>
+<p>Given this test program taken from a bug report <a href="https://github.com/ocaml/ocaml/issues/13123">#13123</a> against OCaml.</p>
+<pre><code><span class="ocaml-comment-block">(*</span><span class="ocaml-comment-block"> Build with:
+</span><span class="ocaml-comment-block">  ocamlfind ocamlopt -package unix -package threads -thread -linkpkg -o liquidsoap_test.exe liquidsoap_test.ml </span><span class="ocaml-comment-block">*)</span><span class="ocaml-source">
+</span><span class="ocaml-keyword">let</span><span class="ocaml-source"> </span><span class="ocaml-entity-name-function-binding">frame_size</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-float">0.04</span><span class="ocaml-source">
+</span><span class="ocaml-keyword">let</span><span class="ocaml-source"> </span><span class="ocaml-entity-name-function-binding">pcm_len</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source"> </span><span class="ocaml-source">int_of_float</span><span class="ocaml-source"> </span><span class="ocaml-source">(</span><span class="ocaml-constant-numeric-decimal-float">44100.</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">*.</span><span class="ocaml-source"> </span><span class="ocaml-source">frame_size</span><span class="ocaml-source">)</span><span class="ocaml-source">
+</span><span class="ocaml-keyword">let</span><span class="ocaml-source"> </span><span class="ocaml-entity-name-function-binding">channels</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-integer">2</span><span class="ocaml-source">
+</span><span class="ocaml-source">
+</span><span class="ocaml-keyword">let</span><span class="ocaml-source"> </span><span class="ocaml-entity-name-function-binding">mk_pcm</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-unit">()</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-capital-identifier">Array</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">init</span><span class="ocaml-source"> </span><span class="ocaml-source">channels</span><span class="ocaml-source"> </span><span class="ocaml-source">(</span><span class="ocaml-keyword-other">fun</span><span class="ocaml-source"> </span><span class="ocaml-constant-language">_</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">-&gt;</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-capital-identifier">Array</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">make</span><span class="ocaml-source"> </span><span class="ocaml-source">pcm_len</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-float">0.</span><span class="ocaml-source">)</span><span class="ocaml-source">
+</span><span class="ocaml-source">
+</span><span class="ocaml-keyword">let</span><span class="ocaml-source"> </span><span class="ocaml-keyword">rec </span><span class="ocaml-entity-name-function-binding">fn</span><span class="ocaml-source"> </span><span class="ocaml-source">a</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-keyword-other">if</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-capital-identifier">Array</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">length</span><span class="ocaml-source"> </span><span class="ocaml-source">a</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">&lt;&gt;</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-integer">0</span><span class="ocaml-source"> </span><span class="ocaml-keyword-other">then</span><span class="ocaml-source">
+</span><span class="ocaml-source">    </span><span class="ocaml-constant-language-capital-identifier">Gc</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">full_major</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-unit">()</span><span class="ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator">;</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-keyword">let</span><span class="ocaml-source"> </span><span class="ocaml-entity-name-function-binding">pcm</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source"> </span><span class="ocaml-source">mk_pcm</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-unit">()</span><span class="ocaml-source"> </span><span class="ocaml-keyword-other">in</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-source">ignore</span><span class="ocaml-source">(</span><span class="ocaml-source">pcm</span><span class="ocaml-source">)</span><span class="ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator">;</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-constant-language-capital-identifier">Unix</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">sleepf</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-float">0.04</span><span class="ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator">;</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-source">fn</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-array">[||]</span><span class="ocaml-source">
+</span><span class="ocaml-source">
+</span><span class="ocaml-keyword-other">let</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-unit">()</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-keyword">let</span><span class="ocaml-source"> </span><span class="ocaml-entity-name-function-binding">deadweigth</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-capital-identifier">Array</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">make</span><span class="ocaml-source"> </span><span class="ocaml-source">(</span><span class="ocaml-constant-numeric-decimal-integer">40</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">*</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-integer">1024</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">*</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-integer">1024</span><span class="ocaml-source">)</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-integer">1</span><span class="ocaml-source"> </span><span class="ocaml-keyword-other">in</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-constant-language-capital-identifier">Unix</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">sleepf</span><span class="ocaml-source"> </span><span class="ocaml-constant-numeric-decimal-float">0.04</span><span class="ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator">;</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-keyword">let</span><span class="ocaml-source"> </span><span class="ocaml-entity-name-function-binding">th</span><span class="ocaml-source"> </span><span class="ocaml-keyword-operator">=</span><span class="ocaml-source"> </span><span class="ocaml-constant-language-capital-identifier">Thread</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">create</span><span class="ocaml-source"> </span><span class="ocaml-source">fn</span><span class="ocaml-source"> </span><span class="ocaml-source">deadweigth</span><span class="ocaml-source"> </span><span class="ocaml-keyword-other">in</span><span class="ocaml-source">
+</span><span class="ocaml-source">  </span><span class="ocaml-constant-language-capital-identifier">Thread</span><span class="ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator">.</span><span class="ocaml-source">join</span><span class="ocaml-source"> </span><span class="ocaml-source">th</span><span class="ocaml-source">
+</span></code></pre>
+<p>And an opam switch created with frame pointers.</p>
+<pre><code><span class="shell-source">$ opam switch create 5.3.0 5.3.0+options ocaml-option-fp
+</span><span class="shell-source">
+</span><span class="shell-source">$ ocamlfind ocamlopt -package unix -package threads -thread </span><span class="shell-constant-character-escape-newline">\
+</span><span class="shell-source">  -linkpkg -o liquidsoap_test.exe liquidsoap_test.ml
+</span></code></pre>
+<p>Running this code will print the PID each time the <code>liquidsoap_test.exe</code> executable is run.</p>
+<pre><code><span class="shell-source">$ sudo bpftrace -e </span><span class="shell-punctuation-definition-string-begin">'</span><span class="shell-string-quoted-single">uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:caml_start_program { printf("OCaml run with process ID %d\n", pid); }</span><span class="shell-punctuation-definition-string-end">'</span><span class="shell-source">
+</span></code></pre>
+<p>Here we are using the information we know about OCaml startup, the <code>caml_start_program</code> is an assembly function that bridges the gap between the C startup code and OCaml, setting up the environment for the OCaml code. The section after <code>uprobe:</code> needs to point to the executable being run, change that if you want to trace something else.</p>
+<p>Next, recall that we are dealing with a mix of regular C functions and OCaml functions. Listing the tracepoints available shows a mix of regular C functions prefixed with <code>caml_*</code> that are either part of the runtime or C primitives. OCaml compiler performs name mangling so anything coming from an OCaml source file will have a prefix <code>caml&lt;MODULE&gt;.</code> e.g. <code>camlStdlib__Domain*</code>  for the <code>domain.ml</code> module from the standard library or <code>camlStdlib__Int.compare_296</code> for the compare function on Int. Armed with that knowledge. This command will list available probe points:</p>
+<pre><code><span class="shell-source">$ sudo bpftrace -l </span><span class="shell-punctuation-definition-string-begin">'</span><span class="shell-string-quoted-single">uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:*</span><span class="shell-punctuation-definition-string-end">'</span><span class="shell-source">
+</span></code></pre>
+<p>If we wanted to count the number of function calls in a binary, we could do it like so:</p>
+<pre><code><span class="shell-source">$ cat count.bt
+</span><span class="shell-punctuation-definition-comment">#</span><span class="shell-comment-line-number-sign"> Printout matched program</span><span class="shell-comment-line-number-sign">
+</span><span class="shell-source">uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:caml_start_program
+</span><span class="shell-source">{
+</span><span class="shell-source">  printf("OCaml run with process ID %d\n", pid);
+</span><span class="shell-source">}
+</span><span class="shell-source">
+</span><span class="shell-punctuation-definition-comment">#</span><span class="shell-comment-line-number-sign"> Trace function calls</span><span class="shell-comment-line-number-sign">
+</span><span class="shell-source">uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:camlLiquidsoap_test*
+</span><span class="shell-source">{
+</span><span class="shell-source">    @[probe] = count();
+</span><span class="shell-source">}
+</span><span class="shell-source">
+</span><span class="shell-source">$ sudo bpftrace count.bt
+</span><span class="shell-source">Attaching 5 probes...
+</span><span class="shell-source">OCaml run with process ID 128477
+</span><span class="shell-source">^C
+</span><span class="shell-source">
+</span><span class="shell-source">@[uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:camlLiquidsoap_test.entry]: 1
+</span><span class="shell-source">@[uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:camlLiquidsoap_test.fn_327]: 1
+</span><span class="shell-source">@[uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:camlLiquidsoap_test.mk_pcm_273]: 1029
+</span><span class="shell-source">@[uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:camlLiquidsoap_test.fun_601]: 2058
+</span></code></pre>
+<p>Another thing we could do is see how much time is spent in the minor GC promotion function.</p>
+<p>OCaml uses a bump-pointer allocator for the minor heap, when that is full it will call a C function to scan the minor heap, destroy the junk, and promote anything that survives into the major heap. I know that the main entry point for this is called <code>caml_empty_minor_heap_promote</code>. So this script will instrument the entry and exit for that function and print out a histogram of the time taken.</p>
+<pre><code><span class="shell-punctuation-definition-comment">#</span><span class="shell-comment-line-number-sign"> cat gcprofile.bt</span><span class="shell-comment-line-number-sign">
+</span><span class="shell-source">
+</span><span class="shell-source">uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:caml_start_program
+</span><span class="shell-source">{
+</span><span class="shell-source">  printf("Attaching to OCaml process ID %d\n", pid);
+</span><span class="shell-source">}
+</span><span class="shell-source">
+</span><span class="shell-source">uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:caml_empty_minor_heap_promote
+</span><span class="shell-source">{
+</span><span class="shell-source">  @t = nsecs;
+</span><span class="shell-source">}
+</span><span class="shell-source">
+</span><span class="shell-source">uretprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:caml_empty_minor_heap_promote / @t /
+</span><span class="shell-source">{
+</span><span class="shell-source">  @minor_gc_times = hist(nsecs - @t);
+</span><span class="shell-source">}
+</span></code></pre>
+<p>What about the major GC? The design of that is more complicated but I know <code>major_collection_slice</code> does the majority of the work, so we attach there.</p>
+<pre><code><span class="shell-punctuation-definition-comment">#</span><span class="shell-comment-line-number-sign"> cat gcprofile_major.bt</span><span class="shell-comment-line-number-sign">
+</span><span class="shell-source">
+</span><span class="shell-source">uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:caml_start_program
+</span><span class="shell-source">{
+</span><span class="shell-source">  printf("Attaching to OCaml process ID %d\n", pid);
+</span><span class="shell-source">}
+</span><span class="shell-source">
+</span><span class="shell-source">uprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:major_collection_slice
+</span><span class="shell-source">{
+</span><span class="shell-source">  @t = nsecs;
+</span><span class="shell-source">}
+</span><span class="shell-source">
+</span><span class="shell-source">uretprobe:/home/tsmc/ocaml-performance/liquidsoap_test.exe:major_collection_slice / @t /
+</span><span class="shell-source">{
+</span><span class="shell-source">  @major_gc_slice_times = hist(nsecs - @t);
+</span><span class="shell-source">}
+</span></code></pre>
+<h1><a href="https://lambdafoo.com/rss.xml#take-away" class="anchor" aria-hidden="true"></a>Take Away</h1>
+<p>OCaml programs can traced with eBPF and bpftrace. You need to install OCaml with frame pointers enabled and use a Linux distribution like Ubuntu 24.04 that also enables frame pointers, so you can trace into system libraries. The OCaml runtime and certain primitives use a symbol prefix of <code>caml_</code> and OCaml code uses a prefix of <code>caml&lt;MODULE&gt;</code> where <code>&lt;MODULE&gt;</code> is the OCaml module containing the code. This partially covers the functionality in <a href="https://ocaml.org/manual/5.3/profil.html">ocamlprof</a> which lets you profile function counts and branches taken in things like while, if and try. With eBPF we can count the function calls but more work needs to be done to support the branching constructs, essentially we need a USDT implementation for OCaml that understands OCaml's name mangling and calling conventions. The upside is eBPF can be applied to any OCaml binary without needing a recompile.</p>
+<p>Next steps are adding USDT probes to the OCaml runtime, so there is a static API for the GC, and after that expose USDT probe points from OCaml programs.</p>
+
+  <p class="post-tags">Tags: <a href="https://lambdafoo.com/tags/ocaml/index.html" title="All pages tagged 'ocaml'." rel="tag">ocaml</a>, <a href="https://lambdafoo.com/tags/ebpf/index.html" title="All pages tagged 'ebpf'." rel="tag">ebpf</a></p>
+</div>
+
+      
